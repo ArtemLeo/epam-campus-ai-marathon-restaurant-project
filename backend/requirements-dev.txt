@@ -1,0 +1,11 @@
+# Local development and CI dependencies. Lambda dependencies are installed from its requirements.txt.
+boto3>=1.34
+moto[cognitoidp,dynamodb,s3,ses,sqs]>=5.0
+ruff>=0.6
+
+# Local HTTP adapter tests.
+fastapi==0.115.6
+httpx>=0.27,<1
+
+-r src/lambdas/api_handler/requirements.txt
+pypdf>=6,<7

@@ -1,0 +1,86 @@
+/* =========================================================
+   CSS Variables — Green & Tasty Design System
+   ========================================================= */
+:root {
+  /* Neutrals */
+  --neutral-0: #ffffff;
+  --neutral-50: #fafafa;
+  --neutral-100: #f7f7f7;
+  --neutral-200: #dadada;
+  --neutral-300: #c4c4c4;
+  --neutral-400: #898989;
+  --neutral-600: #575757;
+  --neutral-700: #454444;
+  --neutral-900: #232323;
+
+  --neutral-500: #6b7280;
+  --neutral-800: #343434;
+
+  /* Greens */
+  --green-50: #f0faf2;
+  --green-100: #e9ffea;
+  --green-150: #C5E8C7;
+  --green-200: #bce7c7;
+  --green-500: #118640;
+  --green-300: #48AF6F;
+  --green-400: #15A84C;
+  --green-600: #0F7A37;
+  --green-700: #0c6530;
+  --green-800: #0B5B29;
+  --green-gradient: linear-gradient(120deg, #0B5B29, #0F7A37 80%);
+
+  /* Warm backgrounds */
+  --bg-green: #D9E5D9;
+  --bg-yellow: #F7F7EC;
+  --bg-warm: #f7f7f7;
+
+  /* Blues */
+  --blue-100: #dee9ff;
+  --blue-400: #0e53e9;
+  --blue-500: #0C48CA;
+
+  /* Orange */
+  --orange-30: #FFFDEC;
+  --orange-100: #fff2d4;
+  --orange-150: #F3EBBE;
+  --orange-400: #ffae00;
+  --orange-600: #CC8B00;
+
+  /* Red */
+  --red-30: #FFF7F7;
+  --red-100: #FCE9ED;
+  --red-400: #B70B0B;
+
+  --red-200: #f8cbd2;
+  --red-600: #a31525;
+  --red-700: #841725;
+  --amber-100: #fff2d4;
+  --amber-300: #f6c34a;
+  --amber-400: #c99012;
+  --amber-700: #805b00;
+
+  /* Gold accent (subtle) */
+  --gold-100: #fdf5db;
+  --gold-400: #d4a843;
+  --gold-500: #c49a38;
+  --gold-600: #a17e2a;
+
+  /* Spacing */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.10);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --shadow-xl: 0 16px 40px rgba(0, 0, 0, 0.14);
+
+  /* Transitions */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --transition-fast: 0.15s var(--ease-out);
+  --transition-normal: 0.25s var(--ease-out);
+}

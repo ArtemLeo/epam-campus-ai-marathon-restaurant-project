@@ -1,0 +1,186 @@
+/* =========================================================
+   Global styles — Green & Tasty Restaurant
+   ========================================================= */
+@import '@fontsource/poppins/latin-400.css';
+@import '@fontsource/poppins/latin-500.css';
+@import '@fontsource/poppins/latin-600.css';
+
+@import './variables.css';
+@import './typography.css';
+@import './buttons.css';
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: var(--neutral-100);
+}
+
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Utility */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  width: 100%;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Form helpers */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.form-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--neutral-700);
+}
+
+.form-error {
+  font-size: 12px;
+  color: var(--red-400);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+input[type="time"],
+input[type="tel"],
+select,
+textarea {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  padding: 10px 14px;
+  border: 1.5px solid var(--neutral-200);
+  border-radius: var(--radius-md);
+  background: var(--neutral-0);
+  color: var(--neutral-900);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  outline: none;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--green-400);
+  box-shadow: 0 0 0 3px rgba(21, 168, 76, 0.12);
+}
+
+/* Cards */
+.card {
+  background: var(--neutral-0);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: box-shadow var(--transition-normal), transform var(--transition-normal);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+/* Status badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.badge--pending   { background: var(--bg-yellow); color: var(--orange-400); }
+.badge--confirmed { background: var(--green-100); color: var(--green-600); }
+.badge--cancelled { background: var(--red-100);   color: var(--red-400); }
+.badge--completed { background: var(--blue-100);  color: var(--blue-400); }
+
+/* Page header */
+.page-header {
+  padding: 32px 0 24px;
+}
+
+.page-header h2 {
+  margin: 0;
+}
+
+/* Section header with green underline */
+.section-header h2 {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 10px;
+}
+
+.section-header h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background: var(--green-400);
+  border-radius: 2px;
+}
+
+/* Grid helpers */
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+
+@media (max-width: 900px) {
+  .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+}
+
+/* Divider */
+.divider {
+  border: none;
+  border-top: 1px solid var(--neutral-200);
+  margin: 16px 0;
+}
+
+/* Text helpers */
+.text-muted   { color: var(--neutral-400); }
+.text-success { color: var(--green-600); }
+.text-danger  { color: var(--red-400); }
+.text-center  { text-align: center; }
+
+/* Flex helpers */
+.flex         { display: flex; }
+.flex-col     { flex-direction: column; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.gap-8  { gap: 8px; }
+.gap-16 { gap: 16px; }
+.gap-24 { gap: 24px; }

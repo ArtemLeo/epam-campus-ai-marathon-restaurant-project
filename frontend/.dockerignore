@@ -1,0 +1,7 @@
+# Host dependencies and build output must not overwrite the image's own `npm ci` / build.
+node_modules
+dist
+coverage
+src/config/env.production.ts
+.vscode
+.idea

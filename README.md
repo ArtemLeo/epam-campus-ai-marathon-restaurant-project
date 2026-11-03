@@ -35,23 +35,28 @@
 - **API Gateway Endpoint:** [https://57kpv9qex9.execute-api.eu-north-1.amazonaws.com/develop](https://57kpv9qex9.execute-api.eu-north-1.amazonaws.com/develop)
 - **Shared Demo Password:** `GreenTasty#2026` (for local Docker) / AWS Cloud uses your configured deployment secret (e.g., `3048764c9449ca2af2E7e1fb#63`).
 
-| Role | Demo Email | Primary Dashboard / Test Target |
-|:-----|:-----------|:--------------------------------|
-| **Administrator** | `admin@example.com` | Restaurant Admin, Catalog & Multi-format Reports (`/admin`) |
-| **Customer (Primary)** | `customer@example.com` | Table reservation, personal & group pre-order flow (`/tables`) |
-| **Customer (Secondary)** | `guest@example.com` | Guest collaboration session & invitation testing |
-| **Waiter (Rustaveli)** | `waiter.rustaveli@example.com` | Rustaveli Avenue 48 live visit & order management |
-| **Waiter (Rustaveli 2)** | `waiter.rustaveli2@example.com` | Multi-waiter concurrency at same location |
-| **Waiter (Abashidze)** | `waiter.abashidze@example.com` | Abashidze Street 9 location management |
-| **Waiter (Baratashvili)**| `waiter.baratashvili@example.com` | Baratashvili Street 14 location management |
+![main-preview.jpg](docs/images/main-preview.jpg)
+
+| Role                      | Demo Email                        | Primary Dashboard / Test Target                                |
+|:--------------------------|:----------------------------------|:---------------------------------------------------------------|
+| **Administrator**         | `admin@example.com`               | Restaurant Admin, Catalog & Multi-format Reports (`/admin`)    |
+| **Customer (Primary)**    | `customer@example.com`            | Table reservation, personal & group pre-order flow (`/tables`) |
+| **Customer (Secondary)**  | `guest@example.com`               | Guest collaboration session & invitation testing               |
+| **Waiter (Rustaveli)**    | `waiter.rustaveli@example.com`    | Rustaveli Avenue 48 live visit & order management              |
+| **Waiter (Rustaveli 2)**  | `waiter.rustaveli2@example.com`   | Multi-waiter concurrency at same location                      |
+| **Waiter (Abashidze)**    | `waiter.abashidze@example.com`    | Abashidze Street 9 location management                         |
+| **Waiter (Baratashvili)** | `waiter.baratashvili@example.com` | Baratashvili Street 14 location management                     |
 
 **Try the core flow in 60 seconds:**
+
 1. Open the [Live Demo](https://d33f1c5nqdkw4l.cloudfront.net) without logging in — browse real location photos, menus, and available seating.
 2. Sign in as `customer@example.com` and book a table for tomorrow.
 3. Open the reservation, create a group order link, copy the link into an Incognito window, and add dishes as an invited guest without registering.
 4. Back in the owner window, submit the consolidated order.
 5. Log in as `waiter.rustaveli@example.com` to review incoming pre-orders, start the visit, and confirm dishes.
 6. As `admin@example.com`, inspect service analytics and download consolidated CSV/PDF/XLSX reports.
+
+![menu-preview.jpg](docs/images/menu-preview.jpg)
 
 ---
 
@@ -60,10 +65,14 @@
 Traditional restaurant booking systems force customers to call in advance and handle group orders manually, leading to kitchen bottlenecks, mismatched expectations, and lost revenue during peak hours.
 
 **Green & Tasty** bridges customer convenience and operational efficiency:
-- **Collaborative Group Pre-Orders:** The table organizer generates an invitation link. Group members choose their own dishes in real time without registration; the host submits the consolidated order with zero confusion.
-- **Strict Timezone Integrity:** Operating hours and booking slots strictly adhere to the restaurant's timezone (`Asia/Tbilisi`, 10:00–22:00) rather than the customer's device clock, preventing out-of-bounds reservations.
+
+- **Collaborative Group Pre-Orders:** The table organizer generates an invitation link. Group members choose their own dishes in real time without registration; the host submits the consolidated order
+  with zero confusion.
+- **Strict Timezone Integrity:** Operating hours and booking slots strictly adhere to the restaurant's timezone (`Asia/Tbilisi`, 10:00–22:00) rather than the customer's device clock, preventing
+  out-of-bounds reservations.
 - **Waiter Flow Acceleration:** Waiters accept walk-in clients, change tables dynamically, start/finish visits, and fulfill dishes directly from mobile-optimized interfaces.
-- **Enterprise Reporting:** Automated aggregation calculates revenue, guest turnover, service ratings, and dishes popularity across formats (CSV, Excel XLSX, and localized PDF reports with embedded fonts).
+- **Enterprise Reporting:** Automated aggregation calculates revenue, guest turnover, service ratings, and dishes popularity across formats (CSV, Excel XLSX, and localized PDF reports with embedded
+  fonts).
 
 ---
 
@@ -74,25 +83,23 @@ flowchart TD
     Guest["Unregistered Visitor"] -->|Explore| Catalog["Menus, Locations, Availability"]
     Guest -->|Registration / Sign In| Customer["Customer"]
     Guest -->|Join via Share Link| GuestUser["Invited Guest (No Auth)"]
-    
     Customer -->|Book Table| Booking["Reservation"]
     Booking -->|Initiate| GroupOrder["Collaborative Cart"]
     GuestUser -->|Contribute Items| GroupOrder
     Customer -->|Lock & Submit| FinalOrder["Final Pre-Order"]
-    
     FinalOrder --> Waiter["Location Waiter"]
     Waiter -->|Start Visit & Serve| TableMgmt["Table & Dish Fulfillment"]
     TableMgmt -->|Complete Visit| Feedback["Customer Rating & QR Review"]
     Feedback --> Reports["Admin Dashboard & Multi-format Reports"]
 ```
 
-| Role | Key Capabilities |
-|:-----|:-----------------|
-| **Visitor** | Public browsing of locations, menus, nutritional facts, prices, table schemes, and working hours; self-registration and password recovery. |
-| **Customer** | Table reservation, slot rescheduling (up to 30 mins prior), pre-order cart, group order host privileges, bill splitting coordination, feedback submission. |
-| **Invited Guest** | Direct access to dedicated booking carts via secure tokenized links, contributing dishes without mandatory account creation. |
-| **Waiter** | Location-isolated dashboard, walk-in creation, table relocation, order line confirmation/cancellation, visit lifecycle control. |
-| **Administrator** | Locations and dish catalog management, photo uploads, table layout configuration, waiter assignments, CSV/PDF/XLSX reports export. |
+| Role              | Key Capabilities                                                                                                                                           |
+|:------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Visitor**       | Public browsing of locations, menus, nutritional facts, prices, table schemes, and working hours; self-registration and password recovery.                 |
+| **Customer**      | Table reservation, slot rescheduling (up to 30 mins prior), pre-order cart, group order host privileges, bill splitting coordination, feedback submission. |
+| **Invited Guest** | Direct access to dedicated booking carts via secure tokenized links, contributing dishes without mandatory account creation.                               |
+| **Waiter**        | Location-isolated dashboard, walk-in creation, table relocation, order line confirmation/cancellation, visit lifecycle control.                            |
+| **Administrator** | Locations and dish catalog management, photo uploads, table layout configuration, waiter assignments, CSV/PDF/XLSX reports export.                         |
 
 ---
 
@@ -154,7 +161,6 @@ flowchart LR
     Browser -.->|Local| ViteDev
     ViteDev --> FastAPIDev
     FastAPIDev --> LocalDynamo
-
     Browser ===>|Production HTTPS| CF
     CF --> S3Static
     CF --> APIGW
@@ -173,6 +179,7 @@ flowchart LR
 ## Internationalization (i18n)
 
 The application provides first-class support for **5 languages**:
+
 - **English (EN)** • **Українська (UA)** • **Français (FR)** • **Español (ES)** • **Deutsch (DE)**
 
 - **Reactive Language Switch:** Instant translation switching without page reloading or losing active form inputs.
@@ -187,10 +194,12 @@ The application provides first-class support for **5 languages**:
 No AWS account is required for local execution. Everything runs inside Docker.
 
 ### Prerequisites
+
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/) (running)
 - Git & Make
 
 ### 1. Launch the complete stack
+
 ```bash
 # Clone the repository
 git clone https://github.com/ArtemLeo/epam-campus-ai-marathon-restaurant-project.git
@@ -199,10 +208,12 @@ cd epam-campus-ai-marathon-restaurant-project
 # Spin up backend, frontend, and DynamoDB Local with automatic demo seed
 make up
 ```
+
 Open **http://localhost:4200** in your browser.  
 The API is available at **http://localhost:18080** (health check: `http://localhost:18080/health`).
 
 ### 2. Common Local Operations
+
 ```bash
 make down         # Stop services while preserving local database volume
 make restart      # Rebuild and restart after code changes
@@ -217,6 +228,7 @@ make reset        # Complete purge of local database and uploaded photos
 Production deployment is fully automated using **Terraform** for base cloud infrastructure and **AWS Syndicate** for serverless Lambda/API packaging.
 
 ### Prerequisites
+
 - AWS CLI v2 configured (`aws sts get-caller-identity`)
 - Terraform >= 1.10
 - Node.js >= 20.x & Python 3.12+
@@ -267,11 +279,11 @@ make check        # lint + typecheck + unit tests + production build
 
 ### Test Suite Breakdown
 
-| Suite | Tech Stack | Tests | Scope |
-|:------|:-----------|:------|:------|
-| **Backend Unit** | Pytest, Moto, Ruff | **106** | Services, conflict algorithms, permissions, DynamoDB repo layer |
-| **Frontend Unit** | Vitest, Vue Test Utils | **134** | State management, pinia stores, booking modals, cart synchronization |
-| **Acceptance E2E** | Playwright, Chromium | **45** | End-to-end customer bookings, guest pre-orders, waiter workflow |
+| Suite              | Tech Stack             | Tests   | Scope                                                                |
+|:-------------------|:-----------------------|:--------|:---------------------------------------------------------------------|
+| **Backend Unit**   | Pytest, Moto, Ruff     | **106** | Services, conflict algorithms, permissions, DynamoDB repo layer      |
+| **Frontend Unit**  | Vitest, Vue Test Utils | **134** | State management, pinia stores, booking modals, cart synchronization |
+| **Acceptance E2E** | Playwright, Chromium   | **45**  | End-to-end customer bookings, guest pre-orders, waiter workflow      |
 
 ```bash
 # Run backend & frontend unit tests

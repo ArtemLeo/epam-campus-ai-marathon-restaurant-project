@@ -1,0 +1,53 @@
+# === IDE ===
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# === Python ===
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+.ruff_cache/
+.pytest_cache/
+
+# === Node.js ===
+node_modules/
+
+# === OS ===
+.DS_Store
+Thumbs.db
+*.log
+
+# === AWS Syndicate ===
+syndicate/bundles/
+syndicate/logs/
+
+# === Terraform ===
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+!terraform.tfvars.example
+
+# === Environment ===
+.env
+.env.local
+.env.*.local
+
+
+# Generated cloud configuration
+backend/syndicate/.generated/
+terraform/backend.local.hcl
+
+.venv-cloud/
+
+# === Claude ===
+.claude/

@@ -1,0 +1,47 @@
+[project]
+name = "restaurant-platform"
+version = "1.0.0"
+description = "EPAM Campus AI Marathon — Restaurant Management Platform"
+requires-python = ">=3.10"
+
+[tool.ruff]
+target-version = "py310"
+line-length = 120
+src = ["backend/src", "tests"]
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "F",    # pyflakes
+    "I",    # isort
+    "B",    # flake8-bugbear
+    "C4",   # flake8-comprehensions
+    "UP",   # pyupgrade
+    "SIM",  # flake8-simplify
+    "LOG",  # flake8-logging
+]
+ignore = [
+    "E501",    # line length (handled by formatter)
+    "SIM112",  # env var names are fixed by lambda_config.json (e.g. EmailFrom, reportsTable)
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["core", "handlers", "repositories", "routes", "services"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+docstring-code-format = true
+
+[tool.pytest.ini_options]
+testpaths = ["e2e/api", "e2e/ui"]
+markers = [
+    "api: API tests",
+    "ui: UI tests (Playwright)",
+    "level1: Level 1 scenarios",
+    "level2: Level 2 scenarios",
+    "level3: Level 3 scenarios",
+]
+addopts = "--tb=short -v"
+

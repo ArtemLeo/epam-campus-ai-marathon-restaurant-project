@@ -1,0 +1,104 @@
+x-e2e-environment: &e2e-environment
+  API_URL: http://backend:8080
+  BASE_URL: http://frontend:4200
+  ADMIN_EMAIL: admin@example.com
+  ADMIN_PASSWORD: ${DEMO_PASSWORD:-GreenTasty#2026}
+  CUSTOMER_EMAIL: customer@example.com
+  CUSTOMER_PASSWORD: ${DEMO_PASSWORD:-GreenTasty#2026}
+  GUEST_EMAIL: guest@example.com
+  GUEST_PASSWORD: ${DEMO_PASSWORD:-GreenTasty#2026}
+  WAITER_EMAIL: waiter.rustaveli@example.com
+  WAITER_PASSWORD: ${DEMO_PASSWORD:-GreenTasty#2026}
+
+services:
+  dynamodb-local:
+    image: amazon/dynamodb-local:2.5.3
+    user: root
+    command: "-jar DynamoDBLocal.jar -sharedDb -dbPath /data"
+    volumes:
+      - restaurant-db:/data
+
+  backend:
+    build:
+      context: ./backend
+      target: app
+    ports:
+      - "127.0.0.1:${BACKEND_PORT:-18080}:8080"
+    depends_on:
+      - dynamodb-local
+    environment:
+      DYNAMODB_ENDPOINT: http://dynamodb-local:8000
+      REGION: eu-north-1
+      AWS_ACCESS_KEY_ID: local
+      AWS_SECRET_ACCESS_KEY: local
+      AWS_DEFAULT_REGION: eu-north-1
+      AWS_EC2_METADATA_DISABLED: "true"
+      PUBLIC_API_URL: http://localhost:${BACKEND_PORT:-18080}
+      FRONTEND_URL: http://localhost:${FRONTEND_PORT:-4200}
+      RESTAURANT_TIMEZONE: ${RESTAURANT_TIMEZONE:-Asia/Tbilisi}
+      DEMO_PASSWORD: ${DEMO_PASSWORD:-GreenTasty#2026}
+    volumes:
+      - restaurant-data:/app/data
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8080/health', timeout=3)"]
+      interval: 5s
+      timeout: 4s
+      retries: 12
+      start_period: 20s
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    ports:
+      - "127.0.0.1:${FRONTEND_PORT:-4200}:4200"
+    depends_on:
+      backend:
+        condition: service_healthy
+    environment:
+      VITE_BACKEND_URL: /api
+      VITE_PROXY_TARGET: http://backend:8080
+      VITE_RESTAURANT_TIMEZONE: ${RESTAURANT_TIMEZONE:-Asia/Tbilisi}
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:4200').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 5s
+      timeout: 4s
+      retries: 12
+
+  backend-tests:
+    profiles: ["tools"]
+    build:
+      context: ./backend
+      target: test
+    environment:
+      AWS_ACCESS_KEY_ID: testing
+      AWS_SECRET_ACCESS_KEY: testing
+      AWS_DEFAULT_REGION: eu-north-1
+      AWS_EC2_METADATA_DISABLED: "true"
+      LOCAL_DATA_DIR: /tmp/restaurant-test-data
+    working_dir: /app
+
+  e2e-api:
+    profiles: ["tools"]
+    build:
+      context: ./e2e
+      dockerfile: Dockerfile.api
+    environment: *e2e-environment
+
+  e2e-ui:
+    profiles: ["tools"]
+    build:
+      context: ./e2e
+      dockerfile: Dockerfile.ui
+    init: true
+    shm_size: 1gb
+    depends_on:
+      backend:
+        condition: service_healthy
+      frontend:
+        condition: service_healthy
+    environment: *e2e-environment
+
+volumes:
+  restaurant-db:
+  restaurant-data:

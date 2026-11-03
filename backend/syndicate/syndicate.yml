@@ -1,0 +1,5 @@
+# Template only. make aws-configure creates the ignored .generated configuration.
+account_id: "CONFIGURE_ACCOUNT"
+region: "eu-north-1"
+project_path: "."
+deploy_target_bucket: "CONFIGURE_ARTIFACT_BUCKET"

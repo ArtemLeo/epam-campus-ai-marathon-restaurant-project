@@ -1,0 +1,44 @@
+account_id: "CONFIGURE_ACCOUNT"
+region: "eu-north-1"
+lambdas_alias_name: "dev"
+logs_expiration: 30
+
+api_gateway_name: "restaurant-backend-api"
+user_pool_name: "restaurant-backend-user-pool"
+reports_queue_name: "restaurant-reports-queue"
+
+# DynamoDB tables
+waiter_list_table_name: "Waiters"
+feedback_table_name: "Feedback"
+locations_table: "Locations"
+tables_table: "Tables"
+dishes_table: "Dishes"
+reservations_table: "Reservations"
+orders_table: "Orders"
+reports_table_name: "Reports"
+reports_history_table_name: "ReportsHistory"
+profile_images_table_name: "ProfileImages"
+notifications_table_name: "Notifications"
+group_reservations_table: "GroupReservations"
+guest_sessions_table: "GuestSessions"
+
+# DynamoDB GSIs
+waiters_global_index: "locationId-index"
+feedback_global_index: "locationId-createdAt-index"
+tables_location_id_global_index: "locationId-tableNumber-index"
+reservations_table_global_index: "GSI_ByTableId"
+reservations_customer_id_global_index: "GSI_UserId"
+reservations_waiter_id_global_index: "GSI_WaiterId"
+orders_index_reservation_id: "GSI_ReservationId"
+notifications_user_id_global_index: "UserIdIndex"
+
+# S3 buckets
+images_bucket_name: "restaurant-backend-dev-images-CONFIGURE_ACCOUNT"
+profile_images_bucket_name: "restaurant-backend-dev-profile-images-CONFIGURE_ACCOUNT"
+
+email_from: ""
+
+# Populated from Terraform outputs by make aws-deploy.
+user_pool_id: "CONFIGURE_POOL"
+user_pool_client_id: "CONFIGURE_CLIENT"
+restaurant_timezone: "Asia/Tbilisi"

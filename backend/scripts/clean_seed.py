@@ -6,6 +6,7 @@ and Cognito demo users.  Run from the project root with .venv-cloud.
 Usage:
     .venv-cloud/bin/python backend/scripts/clean_seed.py
 """
+
 from __future__ import annotations
 
 import sys
@@ -56,7 +57,11 @@ def wipe_table(dynamo, table_name: str) -> int:
     key_names = [k["AttributeName"] for k in key_schema]
 
     deleted = 0
-    scan_kwargs: dict = {"ProjectionExpression": ", ".join(key_names)}
+    expr_names = {f"#k{i}": k for i, k in enumerate(key_names)}
+    scan_kwargs: dict = {
+        "ProjectionExpression": ", ".join(expr_names.keys()),
+        "ExpressionAttributeNames": expr_names,
+    }
     while True:
         response = table.scan(**scan_kwargs)
         items = response.get("Items", [])
@@ -137,4 +142,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

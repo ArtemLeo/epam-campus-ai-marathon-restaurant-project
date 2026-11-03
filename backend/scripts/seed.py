@@ -29,6 +29,7 @@ import boto3
 
 try:
     import certifi
+
     _SSL_CONTEXT = ssl.create_default_context(cafile=certifi.where())
 except ImportError:
     _SSL_CONTEXT = None

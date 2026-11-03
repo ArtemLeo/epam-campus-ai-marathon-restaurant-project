@@ -4,6 +4,7 @@
 Usage:
     DEMO_PASSWORD="NewSecure#2026" python3 backend/scripts/rotate_demo_passwords.py
 """
+
 from __future__ import annotations
 
 import os
@@ -37,9 +38,7 @@ def main() -> None:
 
     for email in DEMO_EMAILS:
         try:
-            cognito.admin_set_user_password(
-                UserPoolId=pool_id, Username=email, Password=password, Permanent=True
-            )
+            cognito.admin_set_user_password(UserPoolId=pool_id, Username=email, Password=password, Permanent=True)
             print(f"  ✓ {email}")
         except cognito.exceptions.UserNotFoundException:
             print(f"  – {email} (not found, skipped)")
@@ -51,4 +50,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

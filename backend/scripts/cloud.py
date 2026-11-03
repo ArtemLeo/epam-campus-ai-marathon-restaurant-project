@@ -222,7 +222,7 @@ def _flatten_zip(zip_path: Path, src_root: Path) -> None:
         except (json.JSONDecodeError, OSError):
             continue
         if data.get("name") == stem and data.get("lambda_path"):
-            lambda_path = data["lambda_path"]            # e.g. "lambdas/api_handler"
+            lambda_path = data["lambda_path"]  # e.g. "lambdas/api_handler"
             break
     if not lambda_path:
         return  # nothing to fix
@@ -241,7 +241,7 @@ def _flatten_zip(zip_path: Path, src_root: Path) -> None:
                 for info in zin.infolist():
                     data = zin.read(info.filename)
                     if info.filename.startswith(prefix):
-                        info.filename = info.filename[len(prefix):]
+                        info.filename = info.filename[len(prefix) :]
                         if not info.filename:
                             continue  # skip the directory entry itself
                     zout.writestr(info, data)
@@ -262,7 +262,10 @@ def deploy(command: str) -> None:
         r"^user_pool_id:.*$", f'user_pool_id: "{out["cognito_user_pool_id"]}"', aliases, flags=re.MULTILINE
     )
     aliases = re.sub(
-        r"^user_pool_client_id:.*$", f'user_pool_client_id: "{out["cognito_user_pool_client_id"]}"', aliases, flags=re.MULTILINE
+        r"^user_pool_client_id:.*$",
+        f'user_pool_client_id: "{out["cognito_user_pool_client_id"]}"',
+        aliases,
+        flags=re.MULTILINE,
     )
     path.write_text(aliases)
     # Lambda Python 3.12 runs on Amazon Linux 2023 x86_64. Never package host macOS/ARM wheels.

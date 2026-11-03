@@ -1,0 +1,33 @@
+{
+  "version": "1.0",
+  "name": "report-sender",
+  "func_name": "main.handler",
+  "resource_type": "lambda",
+  "iam_role_name": "report-sender-role",
+  "runtime": "python3.12",
+  "memory": 128,
+  "timeout": 100,
+  "lambda_path": "lambdas/report_sender",
+  "dependencies": [
+    {
+      "resource_name": "report-sender-role",
+      "resource_type": "iam_role"
+    }
+  ],
+  "event_sources": [],
+  "env_variables": {
+    "EmailFrom": "${email_from}",
+    "Region": "${region}",
+    "LocationTableName": "${locations_table}",
+    "ReportTableName": "${reports_table_name}",
+    "CognitoUserPoolId": "${user_pool_id}",
+    "ReservationsTableName": "${reservations_table}",
+    "reports_queue_name": "${reports_queue_name}",
+    "RESTAURANT_TIMEZONE": "${restaurant_timezone}"
+  },
+  "publish_version": true,
+  "alias": "${lambdas_alias_name}",
+  "url_config": {},
+  "ephemeral_storage": 512,
+  "tags": {}
+}

@@ -1,0 +1,10 @@
+FROM python:3.12-slim
+
+WORKDIR /e2e
+
+COPY requirements-api.txt ./
+RUN pip install --no-cache-dir -r requirements-api.txt
+
+COPY . ./
+
+ENTRYPOINT ["python", "-m", "pytest", "api", "-v"]

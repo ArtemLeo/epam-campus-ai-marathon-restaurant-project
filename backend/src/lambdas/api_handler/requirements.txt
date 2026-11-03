@@ -1,0 +1,2 @@
+# PDF export; includes an embedded open font for Ukrainian text.
+reportlab>=4.4,<5

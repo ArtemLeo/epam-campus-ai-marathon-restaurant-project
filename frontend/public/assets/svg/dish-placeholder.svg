@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-labelledby="title description">
+  <title id="title">Dish photo coming soon</title>
+  <desc id="description">An illustrated plate with a fork and knife on a pale green background.</desc>
+  <rect width="640" height="480" fill="#edf4ed"/>
+  <ellipse cx="320" cy="330" rx="146" ry="18" fill="#dce8dc"/>
+  <circle cx="320" cy="230" r="116" fill="#fafcf9" stroke="#86a78a" stroke-width="5"/>
+  <circle cx="320" cy="230" r="88" fill="none" stroke="#c6d9c7" stroke-width="3"/>
+  <g fill="none" stroke="#59805f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M151 130v58c0 20 32 20 32 0v-58M167 130v191M473 130v191M473 130c-21 20-29 52-27 81h27"/>
+    <path d="M303 246c-3-29 13-48 41-49 0 26-13 45-41 49ZM300 257l25-35"/>
+  </g>
+</svg>

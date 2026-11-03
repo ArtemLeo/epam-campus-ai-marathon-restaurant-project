@@ -182,7 +182,7 @@ def _playwright_browser() -> Iterator["Browser"]:
         browser = pw.chromium.launch(
             headless=headless,
             executable_path=executable or None,
-            args=["--no-sandbox", "--disable-dev-shm-usage"] if executable else None,
+            args=["--no-sandbox", "--disable-dev-shm-usage"],
         )
         yield browser
         browser.close()

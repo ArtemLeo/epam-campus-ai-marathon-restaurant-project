@@ -13,6 +13,7 @@
           type="button"
           class="chip"
           :class="{ 'chip--active': dishType === cat.value }"
+          :aria-pressed="dishType === cat.value"
           @click="dishType = cat.value"
         >
           {{ cat.label }}

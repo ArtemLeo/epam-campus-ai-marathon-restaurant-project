@@ -16,16 +16,16 @@ describe('AppToast accessibility', () => {
     const toast = useToast()
     toast.success('Profile updated.')
     toast.error('Profile update failed.')
-    const wrapper = mount(AppToast)
+    const wrapper = mount(AppToast, { global: { stubs: { teleport: true } } })
     await nextTick()
 
-    const success = document.body.querySelector('.toast--success')!
-    const error = document.body.querySelector('.toast--error')!
-    expect(success.getAttribute('role')).toBe('status')
-    expect(success.getAttribute('aria-live')).toBe('polite')
-    expect(error.getAttribute('role')).toBe('alert')
-    expect(error.getAttribute('aria-live')).toBe('assertive')
-    expect(error.querySelector('.toast__icon')?.getAttribute('aria-hidden')).toBe('true')
+    const success = wrapper.get('.toast--success')
+    const error = wrapper.get('.toast--error')
+    expect(success.attributes('role')).toBe('status')
+    expect(success.attributes('aria-live')).toBe('polite')
+    expect(error.attributes('role')).toBe('alert')
+    expect(error.attributes('aria-live')).toBe('assertive')
+    expect(error.get('.toast__icon').attributes('aria-hidden')).toBe('true')
 
     wrapper.unmount()
   })

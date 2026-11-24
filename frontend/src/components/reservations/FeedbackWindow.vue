@@ -4,7 +4,7 @@
     <div v-else class="feedback">
       <section v-for="section in sections" :key="section.type" class="feedback__section">
         <h4>{{ section.label }}</h4>
-        <div class="feedback__stars" role="radiogroup" :aria-label="t('customer.ratingFor', { type: section.label })">
+        <div class="feedback__stars" role="group" :aria-label="t('customer.ratingFor', { type: section.label })">
           <button
             v-for="n in 5"
             :key="n"
@@ -12,6 +12,7 @@
             class="feedback__star"
             :class="{ 'feedback__star--on': n <= forms[section.type].rating }"
             :aria-label="t('customer.stars', { count: n }, n)"
+            :aria-pressed="n === forms[section.type].rating"
             @click="forms[section.type].rating = n"
           >
             ★

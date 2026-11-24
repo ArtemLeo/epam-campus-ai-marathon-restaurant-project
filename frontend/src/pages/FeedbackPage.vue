@@ -4,7 +4,7 @@
       <h1>{{ t('customer.leaveFeedback') }}</h1>
       <p class="text-muted">{{ t('customer.feedbackIntro') }}</p>
 
-      <div v-if="!reservationId" class="error-msg">
+      <div v-if="!reservationId" class="error-msg" role="alert">
         <p>{{ t('customer.missingReservation') }}</p>
       </div>
 

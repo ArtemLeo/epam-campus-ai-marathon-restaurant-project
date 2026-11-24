@@ -22,6 +22,7 @@ const rows = {
   primaryNavigation: ['Primary navigation', 'Основна навігація', 'Navigation principale', 'Navegación principal', 'Hauptnavigation'],
   mobileNavigation: ['Mobile navigation', 'Мобільна навігація', 'Navigation mobile', 'Navegación móvil', 'Mobile Navigation'],
   notifications: ['Notifications', 'Сповіщення', 'Notifications', 'Notificaciones', 'Benachrichtigungen'],
+  notificationsCount: ['Notifications, {count} unread | Notifications, {count} unread', 'Сповіщення: {count} непрочитане | Сповіщення: {count} непрочитані | Сповіщення: {count} непрочитаних', 'Notifications, {count} non lue | Notifications, {count} non lues', 'Notificaciones, {count} sin leer | Notificaciones, {count} sin leer', 'Benachrichtigungen, {count} ungelesen | Benachrichtigungen, {count} ungelesen'],
   markRead: ['Mark all read', 'Позначити всі прочитаними', 'Tout marquer comme lu', 'Marcar todo como leído', 'Alle als gelesen markieren'],
   noNotifications: ['No notifications', 'Сповіщень немає', 'Aucune notification', 'No hay notificaciones', 'Keine Benachrichtigungen'],
   close: ['Close', 'Закрити', 'Fermer', 'Cerrar', 'Schließen'],

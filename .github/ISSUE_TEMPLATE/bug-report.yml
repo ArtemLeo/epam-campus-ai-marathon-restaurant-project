@@ -44,6 +44,19 @@ body:
       required: true
 
   - type: dropdown
+    id: area
+    attributes:
+      label: Affected area
+      options:
+        - Frontend
+        - Backend
+        - AWS
+        - CI
+        - Documentation
+    validations:
+      required: true
+
+  - type: dropdown
     id: environment
     attributes:
       label: Environment

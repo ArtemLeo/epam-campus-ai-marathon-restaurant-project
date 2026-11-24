@@ -233,6 +233,11 @@ onMounted(fetchReservations)
   color: var(--green-600);
 }
 
+.status-tab:focus-visible {
+  outline: 2px solid var(--green-600);
+  outline-offset: 2px;
+}
+
 .status-tab--active {
   color: var(--green-600);
   border-bottom-color: var(--green-600);

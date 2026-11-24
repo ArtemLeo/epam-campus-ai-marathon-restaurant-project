@@ -622,6 +622,7 @@ h1 {
 }
 
 .tab:hover { color: var(--neutral-700); }
+.tab:focus-visible { outline: 2px solid var(--green-600); outline-offset: 2px; }
 .tab--active { color: var(--green-600); border-bottom-color: var(--green-500); }
 
 .section-header {

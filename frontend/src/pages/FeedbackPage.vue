@@ -54,7 +54,7 @@
           {{ t(submitting ? 'customer.submitting' : 'customer.submitFeedback') }}
         </button>
 
-        <p v-if="error" class="error-msg">{{ error.startsWith('customer.') ? t(error) : translateApiMessage(error) }}</p>
+        <p v-if="error" class="error-msg" role="alert">{{ error.startsWith('customer.') ? t(error) : translateApiMessage(error) }}</p>
       </form>
     </div>
   </div>

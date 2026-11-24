@@ -11,13 +11,15 @@
         :value="modelValue"
         :placeholder="placeholder"
         :disabled="disabled"
+        :aria-invalid="error ? 'true' : undefined"
+        :aria-describedby="error ? errorId : hint ? hintId : undefined"
         @input="onInput"
         @blur="emit('blur', $event)"
       />
       <span v-if="$slots.suffix" class="app-input__suffix"><slot name="suffix" /></span>
     </div>
-    <p v-if="error" class="app-input__error">{{ error }}</p>
-    <p v-if="hint && !error" class="app-input__hint">{{ hint }}</p>
+    <p v-if="error" :id="errorId" class="app-input__error">{{ error }}</p>
+    <p v-if="hint && !error" :id="hintId" class="app-input__hint">{{ hint }}</p>
   </div>
 </template>
 
@@ -52,6 +54,8 @@ const emit = defineEmits<{
 
 // useId() keeps <label for> unique per instance (a module counter gave every input the same id).
 const inputId = useId()
+const errorId = `${inputId}-error`
+const hintId = `${inputId}-hint`
 
 function onInput(event: Event): void {
   emit('update:modelValue', (event.target as HTMLInputElement).value)

@@ -4,9 +4,10 @@
     class="button"
     :class="[`button--${variant}`, `button--${size}`, { 'button--full-width': fullWidth }]"
     :disabled="disabled || loading"
+    :aria-busy="loading ? 'true' : undefined"
     v-bind="$attrs"
   >
-    <span v-if="loading" class="btn-spinner" />
+    <span v-if="loading" class="btn-spinner" aria-hidden="true" />
     <slot />
   </button>
 </template>

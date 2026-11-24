@@ -136,6 +136,11 @@ onMounted(load)
   font: inherit;
 }
 
+.chip:focus-visible {
+  outline: 2px solid var(--green-600);
+  outline-offset: 2px;
+}
+
 .chip--active {
   background: var(--green-600);
   border-color: var(--green-600);

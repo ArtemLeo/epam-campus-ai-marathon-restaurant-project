@@ -101,6 +101,7 @@ onMounted(async () => {
 .feedback__section h4 { margin: 0; }
 .feedback__stars { display: flex; gap: 2px; }
 .feedback__star { background: none; border: none; font-size: 26px; color: var(--neutral-200); cursor: pointer; padding: 0 2px; }
+.feedback__star:focus-visible { outline: 2px solid var(--green-600); outline-offset: 2px; }
 .feedback__star--on { color: #f5a623; }
 .feedback textarea {
   width: 100%; padding: 10px 12px; border: 1px solid var(--neutral-200); border-radius: var(--radius-md); font: inherit; resize: vertical;

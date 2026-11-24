@@ -108,7 +108,7 @@ describe('account locale changes preserve form state', () => {
     const wrapper = mount(ProfilePage, { global: { plugins: [pinia] } }); await flushPromises()
     const profileForm = wrapper.findAll('form')[0]!
     await profileForm.trigger('submit'); await flushPromises()
-    expect(wrapper.get('[role="status"]').text()).toContain('saved')
+    expect(wrapper.get('[role="status"]').text()).toBe('Profile updated successfully!')
     updateProfile.mockRejectedValueOnce(new Error('Profile service is unavailable.'))
     await profileForm.trigger('submit'); await flushPromises()
     expect(wrapper.get('[role="alert"]').text()).toBe('Profile service is unavailable.')

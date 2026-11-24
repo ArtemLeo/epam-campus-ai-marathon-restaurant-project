@@ -29,7 +29,7 @@
 
         <div class="form-group">
           <label>{{ t('customer.rating') }}</label>
-          <div class="stars">
+          <div class="stars" role="group" :aria-label="t('customer.rating')">
             <button
               v-for="star in 5"
               :key="star"
@@ -37,6 +37,7 @@
               class="star"
               :class="{ 'star--filled': star <= form.rating }"
               :aria-label="t('customer.stars', { count: star }, star)"
+              :aria-pressed="star === form.rating"
               @click="form.rating = star"
             >
               &#9733;

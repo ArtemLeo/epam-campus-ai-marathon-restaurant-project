@@ -8,7 +8,7 @@
       </RouterLink>
 
       <!-- Primary nav -->
-      <nav class="nav">
+      <nav class="nav" :aria-label="t('core.primaryNavigation')">
         <RouterLink to="/main" class="nav__link">{{ t('core.main') }}</RouterLink>
         <RouterLink to="/menu" class="nav__link">{{ t('core.menu') }}</RouterLink>
         <RouterLink to="/tables" class="nav__link">{{ t('core.tables') }}</RouterLink>

@@ -19,6 +19,7 @@ const rows = {
   signingIn: ['Signing In…', 'Входимо…', 'Connexion…', 'Iniciando sesión…', 'Anmeldung läuft…'],
   signInTitle: ['Sign In to Your Account', 'Увійдіть у свій обліковий запис', 'Connectez-vous à votre compte', 'Inicia sesión en tu cuenta', 'Melden Sie sich bei Ihrem Konto an'],
   toggleNav: ['Toggle navigation', 'Відкрити або закрити меню', 'Ouvrir ou fermer le menu', 'Abrir o cerrar el menú', 'Menü öffnen oder schließen'],
+  primaryNavigation: ['Primary navigation', 'Основна навігація', 'Navigation principale', 'Navegación principal', 'Hauptnavigation'],
   mobileNavigation: ['Mobile navigation', 'Мобільна навігація', 'Navigation mobile', 'Navegación móvil', 'Mobile Navigation'],
   notifications: ['Notifications', 'Сповіщення', 'Notifications', 'Notificaciones', 'Benachrichtigungen'],
   markRead: ['Mark all read', 'Позначити всі прочитаними', 'Tout marquer comme lu', 'Marcar todo como leído', 'Alle als gelesen markieren'],

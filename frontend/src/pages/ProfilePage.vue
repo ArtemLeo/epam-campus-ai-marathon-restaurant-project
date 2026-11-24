@@ -40,7 +40,7 @@
               <AppInput v-model="profileForm.lastName" :label="t('core.lastName')" :error="profileErrors.lastName" required />
             </div>
             <AppInput :model-value="auth.user?.email ?? ''" :label="t('core.email')" disabled />
-            <p v-if="profileMsg" class="profile-msg" :class="profileMsg.type === 'error' ? 'text-danger' : 'text-success'">
+            <p v-if="profileMsg" class="profile-msg" :class="profileMsg.type === 'error' ? 'text-danger' : 'text-success'" :role="profileMsg.type === 'error' ? 'alert' : 'status'">
               {{ messageText(profileMsg) }}
             </p>
             <AppButton type="submit" :loading="savingProfile" size="large">{{ t('core.saveChanges') }}</AppButton>
@@ -72,7 +72,7 @@
               :error="passwordErrors.confirmNew"
               required
             />
-            <p v-if="passwordMsg" class="profile-msg" :class="passwordMsg.type === 'error' ? 'text-danger' : 'text-success'">
+            <p v-if="passwordMsg" class="profile-msg" :class="passwordMsg.type === 'error' ? 'text-danger' : 'text-success'" :role="passwordMsg.type === 'error' ? 'alert' : 'status'">
               {{ messageText(passwordMsg) }}
             </p>
             <AppButton type="submit" :loading="savingPassword" size="large">{{ t('core.updatePassword') }}</AppButton>

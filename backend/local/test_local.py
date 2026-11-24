@@ -74,6 +74,12 @@ class LocalAdapterTest(unittest.TestCase):
         self.assertTrue(local_auth.sign_in("customer@example.com", "New-password!42")["idToken"])
         self.assertEqual(11, len(dynamo.scan_all("dishes")))
 
+    def test_password_verification_rejects_legacy_and_malformed_hashes(self) -> None:
+        password = "Strong-password!42"
+        self.assertTrue(local_auth._password_matches(password, local_auth.hash_password(password)))
+        self.assertFalse(local_auth._password_matches(password, "legacy-password-hash"))
+        self.assertFalse(local_auth._password_matches(password, "pbkdf2_sha256$missing-digest"))
+
     def test_health_images_and_binary_downloads_have_real_content(self) -> None:
         self.assertEqual({"status": "ok", "mode": "local"}, self.client.get("/health").json())
         photo = (Path(__file__).parents[1] / "scripts" / "seed-images" / "spring-salad.jpg").read_bytes()

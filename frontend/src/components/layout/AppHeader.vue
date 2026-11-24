@@ -39,8 +39,8 @@
       <div class="header-actions">
         <template v-if="auth.isAuthenticated">
           <!-- Notifications -->
-          <div v-if="auth.isWaiter" ref="notifRef" class="notifications-wrapper">
-            <button type="button" class="icon-button notifications-btn" :title="t('core.notifications')" :aria-label="t('core.notifications')" aria-haspopup="true" :aria-controls="showNotifications ? 'notifications-menu' : undefined" :aria-expanded="showNotifications" @click="toggleNotifications">
+          <div v-if="auth.isWaiter" ref="notifRef" class="notifications-wrapper" @keydown.esc.prevent="closeNotifications">
+            <button ref="notifButtonRef" type="button" class="icon-button notifications-btn" :title="t('core.notifications')" :aria-label="t('core.notifications')" aria-haspopup="true" :aria-controls="showNotifications ? 'notifications-menu' : undefined" :aria-expanded="showNotifications" @click="toggleNotifications">
               <img src="/assets/svg/bell.svg" alt="" aria-hidden="true" />
               <span v-if="notifStore.unreadCount > 0" class="badge-dot">{{ notifStore.unreadCount }}</span>
             </button>
@@ -140,6 +140,7 @@ const notifStore = useNotificationsStore()
 const mobileOpen = ref(false)
 const showNotifications = ref(false)
 const notifRef = ref<HTMLElement | null>(null)
+const notifButtonRef = ref<HTMLButtonElement | null>(null)
 
 // Notifications are addressed to waiters (same as the Angular header).
 // Polled every 30s while signed in.
@@ -154,6 +155,11 @@ watch(
 
 function toggleNotifications(): void {
   showNotifications.value = !showNotifications.value
+}
+
+function closeNotifications(): void {
+  showNotifications.value = false
+  notifButtonRef.value?.focus()
 }
 
 function handleClickOutside(event: MouseEvent): void {

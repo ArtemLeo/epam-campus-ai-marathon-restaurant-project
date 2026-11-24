@@ -1,6 +1,6 @@
 <template>
-  <div class="loading-spinner" :class="`loading-spinner--${size}`">
-    <div class="spinner" />
+  <div class="loading-spinner" :class="`loading-spinner--${size}`" role="status" aria-live="polite" aria-busy="true">
+    <div class="spinner" aria-hidden="true" />
     <p v-if="text" class="loading-spinner__text">{{ text }}</p>
   </div>
 </template>

@@ -51,6 +51,16 @@ describe('five-language contract', () => {
     expect(locale.value).toBe('uk')
   })
 
+  it('pluralizes unread notification labels', () => {
+    setLocale('en')
+    expect(t('core.notificationsCount', { count: 1 }, 1)).toBe('Notifications, 1 unread')
+    expect(t('core.notificationsCount', { count: 3 }, 3)).toBe('Notifications, 3 unread')
+    setLocale('uk')
+    expect(t('core.notificationsCount', { count: 1 }, 1)).toBe('Сповіщення: 1 непрочитане')
+    expect(t('core.notificationsCount', { count: 3 }, 3)).toBe('Сповіщення: 3 непрочитані')
+    expect(t('core.notificationsCount', { count: 5 }, 5)).toBe('Сповіщення: 5 непрочитаних')
+  })
+
   it('formats money and numbers without changing currency or restaurant wall time', () => {
     for (const code of supportedLocales) {
       setLocale(code)

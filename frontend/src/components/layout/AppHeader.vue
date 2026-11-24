@@ -44,7 +44,7 @@
               <img src="/assets/svg/bell.svg" alt="" aria-hidden="true" />
               <span v-if="notifStore.unreadCount > 0" class="badge-dot">{{ notifStore.unreadCount }}</span>
             </button>
-            <div v-if="showNotifications" id="notifications-menu" class="notifications-dropdown">
+            <div v-if="showNotifications" id="notifications-menu" class="notifications-dropdown" role="region" :aria-label="t('core.notifications')">
               <div class="notifications-dropdown__header">
                 <span>{{ t('core.notifications') }}</span>
                 <button class="button button--tertiary" @click="notifStore.markAllAsRead()">{{ t('core.markRead') }}</button>

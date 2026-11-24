@@ -78,13 +78,13 @@
           </RouterLink>
 
           <!-- Logout -->
-          <button class="button button--secondary button--small" @click="handleLogout">
+          <button type="button" class="button button--secondary button--small" @click="handleLogout">
             {{ t('core.logout') }}
           </button>
         </template>
 
         <template v-else>
-          <button class="button button--primary button--large" @click="$emit('open-login')">
+          <button type="button" class="button button--primary button--large" @click="$emit('open-login')">
             {{ t('core.login') }}
           </button>
         </template>
@@ -114,10 +114,10 @@
       </template>
       <template v-if="auth.isAuthenticated">
         <RouterLink to="/profile" class="nav__link" @click="mobileOpen = false">{{ t('core.profile') }}</RouterLink>
-        <button class="button button--secondary button--small" @click="handleLogout">{{ t('core.logout') }}</button>
+        <button type="button" class="button button--secondary button--small" @click="handleLogout">{{ t('core.logout') }}</button>
       </template>
       <template v-else>
-        <button class="button button--primary button--large" @click="() => { $emit('open-login'); mobileOpen = false }">{{ t('core.login') }}</button>
+        <button type="button" class="button button--primary button--large" @click="() => { $emit('open-login'); mobileOpen = false }">{{ t('core.login') }}</button>
       </template>
     </nav>
   </header>

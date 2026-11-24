@@ -29,7 +29,7 @@ Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for the develo
 
 ## Demo Accounts
 
-- **Shared Local Demo Password:** `GreenTasty#2026` (for local Docker).
+**Shared Local Demo Password:** `GreenTasty#2026` (for local Docker).
 
 ![Restaurant landing page preview](docs/images/main-preview-enhanced.png)
 

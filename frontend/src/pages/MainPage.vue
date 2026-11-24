@@ -33,7 +33,7 @@
 
         <LoadingSpinner v-if="loading" :text="t('customer.loadingLocations')" />
 
-        <p v-else-if="error" class="error-msg">{{ error.startsWith('customer.') ? t(error) : translateApiMessage(error) }}</p>
+        <p v-else-if="error" class="error-msg" role="alert">{{ error.startsWith('customer.') ? t(error) : translateApiMessage(error) }}</p>
 
         <div v-else-if="locations.length === 0">
           <EmptyState icon="🏪" :title="t('customer.noLocations')" :description="t('customer.checkBack')" />

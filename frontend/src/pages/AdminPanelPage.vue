@@ -13,6 +13,7 @@
           class="tab"
           :class="{ 'tab--active': activeTab === tab.key }"
           :aria-pressed="activeTab === tab.key"
+          :aria-controls="`admin-${tab.key}-panel`"
           @click="activeTab = tab.key"
         >
           {{ tab.label }}
@@ -20,7 +21,7 @@
       </nav>
 
       <!-- Locations -->
-      <section v-if="activeTab === 'locations'">
+      <section v-if="activeTab === 'locations'" id="admin-locations-panel">
         <div class="section-header">
           <h2>{{ t('staff.locations') }}</h2>
           <button class="button button--primary button--sm" @click="openLocationForm()">+ {{ t('staff.addLocation') }}</button>
@@ -47,7 +48,7 @@
       </section>
 
       <!-- Dishes -->
-      <section v-if="activeTab === 'dishes'">
+      <section v-if="activeTab === 'dishes'" id="admin-dishes-panel">
         <div class="section-header">
           <h2>{{ t('staff.dishes') }}</h2>
           <button class="button button--primary button--sm" @click="openDishForm()">+ {{ t('staff.addDish') }}</button>
@@ -75,7 +76,7 @@
       </section>
 
       <!-- Tables -->
-      <section v-if="activeTab === 'tables'">
+      <section v-if="activeTab === 'tables'" id="admin-tables-panel">
         <div class="section-header">
           <h2>{{ t('staff.tables') }}</h2>
           <button class="button button--primary button--sm" @click="openTableForm()">+ {{ t('staff.addTable') }}</button>
@@ -105,7 +106,7 @@
       </section>
 
       <!-- Waiters -->
-      <section v-if="activeTab === 'waiters'">
+      <section v-if="activeTab === 'waiters'" id="admin-waiters-panel">
         <div class="section-header">
           <h2>{{ t('staff.waiters') }}</h2>
           <button class="button button--primary button--sm" @click="waiterLocationId = waiterLocationFilter || locations[0]?.id || ''; showWaiterForm = true">+ {{ t('staff.addWaiter') }}</button>

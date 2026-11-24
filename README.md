@@ -19,7 +19,7 @@
   <b>A comprehensive, cloud-native restaurant management ecosystem featuring real-time table reservations, collaborative group pre-ordering via shared links, dedicated staff operations, and automated analytics reports.</b>
 </p>
 
-[Live Demo](#live-demo) • [Business Value](#business-value-and-capabilities) • [Role Capabilities](#roles-and-capabilities) • [Architecture](#architecture) • [Local Quickstart](#local-development-quickstart) • [AWS Cloud Deployment](#aws-serverless-deployment) • [Testing & QA](#testing-and-quality-assurance) • [Security & Production](#production-readiness-and-security)
+[Demo Accounts](#demo-accounts) • [Business Value](#business-value-and-capabilities) • [Role Capabilities](#roles-and-capabilities) • [Architecture](#architecture) • [Local Quickstart](#local-development-quickstart) • [AWS Cloud Deployment](#aws-serverless-deployment) • [Testing & QA](#testing-and-quality-assurance) • [Security & Production](#production-readiness-and-security)
 
 Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for the development workflow and quality checks.
 
@@ -27,10 +27,8 @@ Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for the develo
 
 ---
 
-## Live Demo
+## Demo Accounts
 
-- **Application (CloudFront):** [https://d33f1c5nqdkw4l.cloudfront.net](https://d33f1c5nqdkw4l.cloudfront.net)
-- **API Gateway Endpoint:** [https://57kpv9qex9.execute-api.eu-north-1.amazonaws.com/develop](https://57kpv9qex9.execute-api.eu-north-1.amazonaws.com/develop)
 - **Shared Demo Password:** `GreenTasty#2026` (for local Docker) / AWS Cloud uses your configured deployment secret (e.g., `3048764c9449ca2af2E7e1fb#63`).
 
 ![Restaurant landing page preview](docs/images/main-preview-enhanced.png)
@@ -47,7 +45,7 @@ Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for the develo
 
 **Try the core flow in 60 seconds:**
 
-1. Open the [Live Demo](https://d33f1c5nqdkw4l.cloudfront.net) without logging in — browse real location photos, menus, and available seating.
+1. [Start the application locally](#local-development-quickstart) and browse location photos, menus, and available seating without logging in.
 2. Sign in as `customer@example.com` and book a table for tomorrow.
 3. Open the reservation, create a group order link, copy the link into an Incognito window, and add dishes as an invited guest without registering.
 4. Back in the owner window, submit the consolidated order.

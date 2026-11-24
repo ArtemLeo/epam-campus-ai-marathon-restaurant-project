@@ -21,6 +21,8 @@
 
 [Live Demo](#live-demo) • [Business Value](#business-value-and-capabilities) • [Role Capabilities](#roles-and-capabilities) • [Architecture](#architecture) • [Local Quickstart](#local-development-quickstart) • [AWS Cloud Deployment](#aws-serverless-deployment) • [Testing & QA](#testing-and-quality-assurance) • [Security & Production](#production-readiness-and-security)
 
+Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for the development workflow and quality checks.
+
 </div>
 
 ---

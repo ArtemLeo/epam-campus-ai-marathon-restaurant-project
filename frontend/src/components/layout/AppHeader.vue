@@ -368,6 +368,11 @@ async function handleLogout(): Promise<void> {
   background: var(--neutral-50);
 }
 
+.notifications-list__item:focus-visible {
+  outline: 2px solid var(--green-600);
+  outline-offset: -2px;
+}
+
 .notifications-list__item--unread {
   background: var(--green-50);
   border-left: 3px solid var(--green-400);

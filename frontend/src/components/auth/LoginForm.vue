@@ -17,9 +17,10 @@
         :placeholder="t('core.emailExample', { at: '@' })"
         :class="{ 'input-error': emailError }"
         :aria-invalid="emailError ? true : undefined"
+        :aria-describedby="emailError ? emailErrorId : undefined"
         @blur="touched.email = true"
       />
-      <span v-if="emailError" class="field-error">{{ emailError }}</span>
+      <span v-if="emailError" :id="emailErrorId" class="field-error">{{ emailError }}</span>
     </label>
 
     <div class="field">
@@ -34,6 +35,7 @@
           autocomplete="current-password"
           :class="{ 'input-error': passwordRequired || unsuccessfulLogin }"
           :aria-invalid="passwordRequired || unsuccessfulLogin ? true : undefined"
+          :aria-describedby="passwordRequired || confirmationRequired || unsuccessfulLogin ? passwordErrorId : undefined"
           @blur="touched.password = true"
         />
         <button
@@ -45,14 +47,14 @@
           <img :src="showPassword ? '/assets/svg/eye_closed.svg' : '/assets/svg/eye.svg'" alt="" />
         </button>
       </div>
-      <span v-if="passwordRequired" class="field-error">
+      <span v-if="passwordRequired" :id="passwordErrorId" class="field-error">
         {{ t('core.passwordRequired') }}
       </span>
-      <span v-else-if="confirmationRequired" class="field-error">
+      <span v-else-if="confirmationRequired" :id="passwordErrorId" class="field-error">
         {{ t('core.confirmBeforeLogin') }}
         <RouterLink :to="{ path: '/signup', query: { confirmEmail: email } }" @click="emit('navigate')">{{ t('core.enterConfirmation') }}</RouterLink>
       </span>
-      <span v-else-if="unsuccessfulLogin" class="field-error" role="alert">
+      <span v-else-if="unsuccessfulLogin" :id="passwordErrorId" class="field-error" role="alert">
         {{ t('core.invalidLogin') }}
       </span>
       <RouterLink class="forgot-link" to="/forgot-password" @click="emit('navigate')">{{ t('core.forgotPassword') }}</RouterLink>
@@ -82,7 +84,9 @@ const emit = defineEmits<{ success: []; navigate: [] }>()
 
 const auth = useAuthStore()
 const modal = useLoginModal()
+const emailErrorId = `${useId()}-error`
 const passwordId = useId()
+const passwordErrorId = `${passwordId}-error`
 
 const email = ref(modal.draft.email)
 const password = ref(modal.draft.password)

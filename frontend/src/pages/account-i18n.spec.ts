@@ -29,12 +29,19 @@ describe('account locale changes preserve form state', () => {
     await wrapper.get('input[name="email"]').trigger('blur')
     await wrapper.get('input[name="password"]').setValue('DraftPassword#1')
     expect(wrapper.text()).toContain('Invalid email address.')
+    const emailInput = wrapper.get('input[name="email"]')
+    expect(emailInput.attributes('aria-describedby')).toBe(wrapper.get('.field-error').attributes('id'))
     setLocale('uk'); await nextTick()
     expect(wrapper.text()).toContain('Перевірте адресу електронної пошти.')
     expect(wrapper.get<HTMLInputElement>('input[name="email"]').element.value).toBe('not-an-email')
     expect(wrapper.get<HTMLInputElement>('input[name="password"]').element.value).toBe('DraftPassword#1')
     setLocale('de'); await nextTick()
     expect(wrapper.text()).toContain('Prüfen Sie die E-Mail-Adresse.')
+    await wrapper.get('input[name="password"]').setValue('')
+    await wrapper.get('form').trigger('submit')
+    const passwordInput = wrapper.get('input[name="password"]')
+    const passwordError = wrapper.findAll('.field-error').find(error => error.text().includes('Passwort'))!
+    expect(passwordInput.attributes('aria-describedby')).toBe(passwordError.attributes('id'))
   })
 
   it('updates registration field errors and labels while retaining entered values', async () => {

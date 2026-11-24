@@ -91,13 +91,13 @@
       </div>
 
       <!-- Mobile menu toggle -->
-      <button class="icon-button mobile-menu-btn" :aria-label="t('core.toggleNav')" :aria-expanded="mobileOpen" @click="mobileOpen = !mobileOpen">
+      <button ref="mobileMenuButtonRef" type="button" class="icon-button mobile-menu-btn" :aria-label="t('core.toggleNav')" :aria-expanded="mobileOpen" @click="mobileOpen = !mobileOpen">
         <span class="hamburger"></span>
       </button>
     </div>
 
     <!-- Mobile nav -->
-    <div v-if="mobileOpen" class="mobile-nav">
+    <div v-if="mobileOpen" class="mobile-nav" @keydown.esc.prevent="closeMobileMenu">
       <RouterLink to="/main" class="nav__link" @click="mobileOpen = false">{{ t('core.main') }}</RouterLink>
       <RouterLink to="/menu" class="nav__link" @click="mobileOpen = false">{{ t('core.menu') }}</RouterLink>
       <RouterLink to="/tables" class="nav__link" @click="mobileOpen = false">{{ t('core.tables') }}</RouterLink>
@@ -138,6 +138,7 @@ const router = useRouter()
 const auth = useAuthStore()
 const notifStore = useNotificationsStore()
 const mobileOpen = ref(false)
+const mobileMenuButtonRef = ref<HTMLButtonElement | null>(null)
 const showNotifications = ref(false)
 const notifRef = ref<HTMLElement | null>(null)
 const notifButtonRef = ref<HTMLButtonElement | null>(null)
@@ -160,6 +161,11 @@ function toggleNotifications(): void {
 function closeNotifications(): void {
   showNotifications.value = false
   notifButtonRef.value?.focus()
+}
+
+function closeMobileMenu(): void {
+  mobileOpen.value = false
+  mobileMenuButtonRef.value?.focus()
 }
 
 function handleClickOutside(event: MouseEvent): void {

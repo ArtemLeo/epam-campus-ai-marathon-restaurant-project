@@ -12,8 +12,10 @@
       <button
         v-for="tab in tabs"
         :key="tab.value"
+        type="button"
         class="status-tab"
         :class="{ 'status-tab--active': activeTab === tab.value }"
+        :aria-pressed="activeTab === tab.value"
         @click="activeTab = tab.value"
       >
         {{ tab.label }}

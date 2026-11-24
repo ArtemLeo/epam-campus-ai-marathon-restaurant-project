@@ -1,0 +1,58 @@
+name: Feature request
+description: Suggest an improvement to the restaurant platform
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting an improvement. Explain the user need before proposing a solution.
+
+  - type: checkboxes
+    attributes:
+      label: Existing request
+      options:
+        - label: I searched the existing issues and did not find this request
+          required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What user problem or limitation should this feature address?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: Describe the behavior you would like to see.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: audience
+    attributes:
+      label: Primary user
+      options:
+        - Customer
+        - Waiter
+        - Location manager
+        - Administrator
+        - Developer or operator
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Describe any workarounds or alternative solutions you considered.
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Add examples, mockups, screenshots, or related links.

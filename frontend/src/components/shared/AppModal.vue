@@ -1,9 +1,9 @@
 <template>
   <Teleport to="body">
     <div class="modal-backdrop" role="presentation" @click.self="onBackdropClick">
-      <div ref="panel" tabindex="-1" class="modal" :class="sizeClass" role="dialog" aria-modal="true" :aria-label="title || undefined">
+      <div ref="panel" tabindex="-1" class="modal" :class="sizeClass" role="dialog" aria-modal="true" :aria-labelledby="title ? titleId : undefined">
         <div class="modal__header">
-          <h2 class="modal__title">{{ title }}</h2>
+          <h2 v-if="title" :id="titleId" class="modal__title">{{ title }}</h2>
           <button type="button" class="icon-button" :aria-label="t('core.close')" @click="emit('close')">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
               <path d="M1 1l14 14M15 1L1 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
@@ -23,7 +23,7 @@
 
 <script setup lang="ts">
 import { t } from '@/i18n'
-import { ref, computed } from 'vue'
+import { ref, computed, useId } from 'vue'
 import { useDialogFocus } from '@/composables/useDialogFocus'
 
 const props = withDefaults(
@@ -42,6 +42,7 @@ const props = withDefaults(
 const emit = defineEmits<{ close: [] }>()
 
 const sizeClass = computed(() => `modal--${props.size}`)
+const titleId = `${useId()}-title`
 
 function onBackdropClick(): void {
   if (props.closeOnBackdrop) emit('close')

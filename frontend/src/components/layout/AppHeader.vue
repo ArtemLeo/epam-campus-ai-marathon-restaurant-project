@@ -53,17 +53,15 @@
                 {{ t('core.noNotifications') }}
               </div>
               <ul v-else class="notifications-list">
-                <li
-                  v-for="n in notifStore.notifications"
-                  :key="n.id"
-                  class="notifications-list__item"
-                  :class="{ 'notifications-list__item--unread': !n.isRead }"
-                  role="button"
-                  tabindex="0" @click="notifStore.markAsRead(n.id)"
-                  @keydown.enter="notifStore.markAsRead(n.id)"
-                  @keydown.space.prevent="notifStore.markAsRead(n.id)"
-                >
-                  <p class="notifications-list__msg">{{ notificationMessage(n) }}</p>
+                <li v-for="n in notifStore.notifications" :key="n.id">
+                  <button
+                    type="button"
+                    class="notifications-list__item"
+                    :class="{ 'notifications-list__item--unread': !n.isRead }"
+                    @click="notifStore.markAsRead(n.id)"
+                  >
+                    <span class="notifications-list__msg">{{ notificationMessage(n) }}</span>
+                  </button>
                 </li>
               </ul>
             </div>
@@ -354,8 +352,14 @@ async function handleLogout(): Promise<void> {
 }
 
 .notifications-list__item {
+  width: 100%;
   padding: 12px 18px;
+  border: 0;
   border-bottom: 1px solid var(--neutral-100);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
   cursor: pointer;
   transition: background var(--transition-fast);
 }
@@ -370,7 +374,6 @@ async function handleLogout(): Promise<void> {
 }
 
 .notifications-list__msg {
-  margin: 0;
   font-size: 13px;
 }
 

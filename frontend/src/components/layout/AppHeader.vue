@@ -3,7 +3,7 @@
     <div class="container header-inner">
       <!-- Logo -->
       <RouterLink to="/main" class="logo">
-        <img src="/assets/svg/logo.svg" :alt="t('core.logo')" class="logo__img" />
+        <img src="/assets/svg/logo.svg" alt="" aria-hidden="true" class="logo__img" />
         <span class="logo__text">{{ t('core.restaurant') }}</span>
       </RouterLink>
 

@@ -1,6 +1,6 @@
 <template>
-  <div class="empty-state">
-    <div class="empty-state__icon">{{ icon }}</div>
+  <div class="empty-state" role="status" aria-live="polite">
+    <div class="empty-state__icon" aria-hidden="true">{{ icon }}</div>
     <h4 class="empty-state__title">{{ title || t('core.empty') }}</h4>
     <p v-if="description" class="empty-state__desc">{{ description }}</p>
     <slot />

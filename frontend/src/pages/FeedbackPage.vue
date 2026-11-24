@@ -139,6 +139,7 @@ h1 { margin: 0 0 4px; font-size: 24px; color: var(--neutral-900); }
 }
 .star--filled { color: var(--amber-400); }
 .star:hover { color: var(--amber-300); }
+.star:focus-visible { outline: 2px solid var(--green-600); outline-offset: 2px; }
 
 .button { padding: 10px 20px; border: none; border-radius: var(--radius-md); font-size: 14px; font-weight: 500; cursor: pointer; }
 .button--primary { background: var(--green-500); color: white; }

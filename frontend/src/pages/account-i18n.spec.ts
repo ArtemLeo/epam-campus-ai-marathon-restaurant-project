@@ -98,4 +98,19 @@ describe('account locale changes preserve form state', () => {
     expect(firstForm.findAll('input')[0]!.element.value).toBe('1')
     expect(firstForm.findAll('input')[1]!.element.value).toBe('Коваль')
   })
+
+  it('announces profile save results with the appropriate urgency', async () => {
+    const auth = useAuthStore()
+    auth.user = { id: 'c1', firstName: 'Olena', lastName: 'Koval', email: 'person@example.com', role: 'Customer' }
+    vi.spyOn(auth, 'fetchMe').mockResolvedValue(undefined)
+    vi.spyOn(authApi, 'profileImage').mockResolvedValue({ presignedUrl: '/assets/img/avatar.png' })
+    const updateProfile = vi.spyOn(auth, 'updateProfile').mockResolvedValue(undefined)
+    const wrapper = mount(ProfilePage, { global: { plugins: [pinia] } }); await flushPromises()
+    const profileForm = wrapper.findAll('form')[0]!
+    await profileForm.trigger('submit'); await flushPromises()
+    expect(wrapper.get('[role="status"]').text()).toBe('Profile updated successfully!')
+    updateProfile.mockRejectedValueOnce(new Error('Profile service is unavailable.'))
+    await profileForm.trigger('submit'); await flushPromises()
+    expect(wrapper.get('[role="alert"]').text()).toBe('Profile service is unavailable.')
+  })
 })

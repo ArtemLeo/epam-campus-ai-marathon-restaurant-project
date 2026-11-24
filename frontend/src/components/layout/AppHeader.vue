@@ -40,7 +40,7 @@
         <template v-if="auth.isAuthenticated">
           <!-- Notifications -->
           <div v-if="auth.isWaiter" ref="notifRef" class="notifications-wrapper" @keydown.esc.prevent="closeNotifications">
-            <button ref="notifButtonRef" type="button" class="icon-button notifications-btn" :title="t('core.notifications')" :aria-label="t('core.notifications')" aria-haspopup="true" :aria-controls="showNotifications ? 'notifications-menu' : undefined" :aria-expanded="showNotifications" @click="toggleNotifications">
+            <button ref="notifButtonRef" type="button" class="icon-button notifications-btn" :title="t('core.notifications')" :aria-label="notifStore.unreadCount ? t('core.notificationsCount', { count: notifStore.unreadCount }, notifStore.unreadCount) : t('core.notifications')" aria-haspopup="true" :aria-controls="showNotifications ? 'notifications-menu' : undefined" :aria-expanded="showNotifications" @click="toggleNotifications">
               <img src="/assets/svg/bell.svg" alt="" aria-hidden="true" />
               <span v-if="notifStore.unreadCount > 0" class="badge-dot">{{ notifStore.unreadCount }}</span>
             </button>

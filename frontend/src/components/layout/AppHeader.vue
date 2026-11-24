@@ -97,7 +97,7 @@
     </div>
 
     <!-- Mobile nav -->
-    <div v-if="mobileOpen" id="mobile-navigation" class="mobile-nav" @keydown.esc.prevent="closeMobileMenu">
+    <nav v-if="mobileOpen" id="mobile-navigation" class="mobile-nav" :aria-label="t('core.mobileNavigation')" @keydown.esc.prevent="closeMobileMenu">
       <RouterLink to="/main" class="nav__link" @click="mobileOpen = false">{{ t('core.main') }}</RouterLink>
       <RouterLink to="/menu" class="nav__link" @click="mobileOpen = false">{{ t('core.menu') }}</RouterLink>
       <RouterLink to="/tables" class="nav__link" @click="mobileOpen = false">{{ t('core.tables') }}</RouterLink>
@@ -119,7 +119,7 @@
       <template v-else>
         <button class="button button--primary button--large" @click="() => { $emit('open-login'); mobileOpen = false }">{{ t('core.login') }}</button>
       </template>
-    </div>
+    </nav>
   </header>
 </template>
 

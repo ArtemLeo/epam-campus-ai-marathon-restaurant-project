@@ -44,6 +44,19 @@ body:
       required: true
 
   - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      description: How strongly does this problem affect normal use?
+      options:
+        - Low
+        - Medium
+        - High
+        - Critical
+    validations:
+      required: true
+
+  - type: dropdown
     id: area
     attributes:
       label: Affected area

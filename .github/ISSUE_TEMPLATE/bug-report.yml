@@ -1,0 +1,62 @@
+name: Bug report
+description: Report reproducible incorrect behavior in the application
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a problem. Do not include passwords, tokens, or personal data.
+
+  - type: checkboxes
+    attributes:
+      label: Existing issue
+      options:
+        - label: I searched the existing issues and did not find this bug
+          required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: Describe the incorrect behavior and its impact.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Sign in as ...
+        2. Open ...
+        3. Select ...
+        4. Observe ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Environment
+      options:
+        - Local Docker
+        - AWS deployment
+        - Live demo
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Add logs, screenshots, browser details, or other useful context.

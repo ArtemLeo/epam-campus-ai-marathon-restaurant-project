@@ -181,6 +181,9 @@ class LocalAdapterTest(unittest.TestCase):
         self.assertEqual(user, local_auth.caller_from_token(token).email)
         self.assertIsNone(local_auth.caller_from_token(token[:-1] + ("a" if token[-1] != "a" else "b")))
         recovery = local_auth.forgot_password(user)
+        stored_user = local_auth._get_user(user)
+        self.assertIsNotNone(stored_user)
+        self.assertTrue(stored_user["reset_hash"].startswith("pbkdf2_sha256$"))
         with self.assertRaises(BadRequest):
             local_auth.reset_password(user, "invalid", "Password-new!42")
         local_auth.reset_password(user, recovery["resetCode"], "Password-new!42")

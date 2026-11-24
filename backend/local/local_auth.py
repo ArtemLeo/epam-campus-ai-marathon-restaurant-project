@@ -297,7 +297,7 @@ def forgot_password(email: Any) -> dict[str, Any]:
     result = {"message": "If the account exists, a password reset code has been issued."}
     if user:
         code = f"{secrets.randbelow(1000000):06d}"
-        user["reset_hash"] = hashlib.sha256(code.encode()).hexdigest()
+        user["reset_hash"] = hash_password(code)
         user["reset_expires"] = int(time.time()) + 600
         user["reset_attempts"] = 0
         dynamo.put_item(USERS_TABLE, user)
@@ -314,7 +314,7 @@ def reset_password(email: Any, code: Any, new_password: Any) -> None:
     if user.get("reset_expires", 0) < time.time() or user.get("reset_attempts", 0) >= 5:
         raise BadRequest("Invalid or expired reset code.")
     user["reset_attempts"] = int(user.get("reset_attempts", 0)) + 1
-    if not hmac.compare_digest(user.get("reset_hash", ""), hashlib.sha256(code.encode()).hexdigest()):
+    if not _password_matches(code, user.get("reset_hash", "")):
         dynamo.put_item(USERS_TABLE, user)
         raise BadRequest("Invalid or expired reset code.")
     user["password_hash"] = hash_password(new_password)

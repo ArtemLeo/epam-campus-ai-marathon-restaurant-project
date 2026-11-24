@@ -8,7 +8,7 @@
         <p>{{ t('customer.missingReservation') }}</p>
       </div>
 
-      <div v-else-if="submitted" class="success-card">
+      <div v-else-if="submitted" class="success-card" role="status">
         <div class="success-icon">&#10003;</div>
         <h2>{{ t('customer.thankYou') }}</h2>
         <p>{{ t('customer.feedbackSubmitted') }}</p>

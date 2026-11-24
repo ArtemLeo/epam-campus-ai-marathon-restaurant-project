@@ -1,15 +1,17 @@
 <template>
   <Teleport to="body">
-    <div class="toast-container" role="status" aria-live="polite">
+    <div class="toast-container">
       <TransitionGroup name="toast">
         <div
           v-for="toast in toasts"
           :key="toast.id"
           class="toast"
           :class="`toast--${toast.type}`"
+          :role="toast.type === 'error' ? 'alert' : 'status'"
+          :aria-live="toast.type === 'error' ? 'assertive' : 'polite'"
           @click="remove(toast.id)"
         >
-          <span class="toast__icon">{{ icons[toast.type] }}</span>
+          <span class="toast__icon" aria-hidden="true">{{ icons[toast.type] }}</span>
           <span class="toast__msg">
             <strong v-if="toast.title" class="toast__title">{{ toast.title }}</strong>
             {{ toast.message }}

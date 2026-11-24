@@ -61,7 +61,7 @@
           required
         />
 
-        <p v-if="globalError" class="form-error">{{ globalError }}</p>
+        <p v-if="globalError" class="form-error" role="alert">{{ globalError }}</p>
 
         <AppButton type="submit" :loading="loading" full-width variant="primary" size="extra-large">
           {{ t('core.createAccount') }}

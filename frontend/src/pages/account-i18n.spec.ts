@@ -54,6 +54,20 @@ describe('account locale changes preserve form state', () => {
     expect(wrapper.findAll('input')[3]!.element.value).toBe('weak')
   })
 
+  it('announces a registration server error to assistive technology', async () => {
+    vi.spyOn(authApi, 'register').mockRejectedValue(new Error('Registration is unavailable.'))
+    const wrapper = mount(RegisterPage, { global: { plugins: [pinia, await routerFor()] } })
+    const inputs = wrapper.findAll('input')
+    await inputs[0]!.setValue('Olena')
+    await inputs[1]!.setValue('Koval')
+    await inputs[2]!.setValue('olena@example.com')
+    await inputs[3]!.setValue('StrongPassword#2026')
+    await inputs[4]!.setValue('StrongPassword#2026')
+    await wrapper.get('form').trigger('submit')
+    await flushPromises()
+    expect(wrapper.get('[role="alert"]').text()).toBe('Registration is unavailable.')
+  })
+
   it('keeps the recovery code and password drafts when translating a validation failure', async () => {
     vi.spyOn(authApi, 'forgotPassword').mockResolvedValue({ message: 'Sent', resetCode: '123456' })
     const wrapper = mount(ResetPasswordPage)

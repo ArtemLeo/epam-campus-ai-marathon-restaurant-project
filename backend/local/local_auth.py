@@ -49,11 +49,13 @@ def hash_password(password: str) -> str:
 
 
 def _password_matches(password: str, stored: str) -> bool:
-    if stored.startswith("pbkdf2_sha256$"):
+    if not stored.startswith("pbkdf2_sha256$"):
+        return False
+    try:
         _, salt, digest = stored.split("$", 2)
-        actual = hashlib.pbkdf2_hmac("sha256", password.encode(), salt.encode(), 260000).hex()
-    else:  # Upgrade existing local demo accounts at their next successful login.
-        digest, actual = stored, hashlib.sha256(password.encode()).hexdigest()
+    except ValueError:
+        return False
+    actual = hashlib.pbkdf2_hmac("sha256", password.encode(), salt.encode(), 260000).hex()
     return hmac.compare_digest(actual, digest)
 
 
@@ -141,9 +143,6 @@ def sign_in(email: Any, password: Any) -> dict[str, Any]:
     user = _get_user(email)
     if not user or not _password_matches(password, user["password_hash"]):
         raise Unauthorized("Invalid email or password")
-    if not user["password_hash"].startswith("pbkdf2_sha256$"):
-        user["password_hash"] = hash_password(password)
-        dynamo.put_item(USERS_TABLE, user)
 
     groups = list(user.get("groups") or [CUSTOMER])
     now = time.time()

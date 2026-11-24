@@ -9,7 +9,7 @@
     </dl>
     <label class="form-label" for="guest-count">{{ t('customer.maxGuests', { count: table.capacity }) }}</label>
     <input id="guest-count" v-model.number="guestCount" type="number" min="1" :max="table.capacity" class="guest-input" />
-    <p v-if="error" class="error">{{ error.startsWith('customer.') ? t(error) : translateApiMessage(error) }}</p>
+    <p v-if="error" class="error" role="alert">{{ error.startsWith('customer.') ? t(error) : translateApiMessage(error) }}</p>
     <template #footer>
       <AppButton variant="secondary" @click="emit('close')">{{ t('customer.cancel') }}</AppButton>
       <AppButton :loading="submitting" :disabled="!valid" @click="submit">{{ t('customer.confirm') }}</AppButton>

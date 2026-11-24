@@ -40,6 +40,7 @@ body:
         - Customer
         - Waiter
         - Location manager
+        - Restaurant owner
         - Administrator
         - Developer or operator
     validations:

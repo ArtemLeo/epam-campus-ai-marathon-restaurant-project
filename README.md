@@ -19,10 +19,6 @@
   <b>A comprehensive, cloud-native restaurant management ecosystem featuring real-time table reservations, collaborative group pre-ordering via shared links, dedicated staff operations, and automated analytics reports.</b>
 </p>
 
-<p align="center">
-  <a href="README.md"><b>English</b></a> • <a href="README_UA.md"><b>Українська</b></a>
-</p>
-
 [Live Demo](#live-demo) • [Business Value](#business-value-and-capabilities) • [Role Capabilities](#roles-and-capabilities) • [Architecture](#architecture) • [Local Quickstart](#local-development-quickstart) • [AWS Cloud Deployment](#aws-serverless-deployment) • [Testing & QA](#testing-and-quality-assurance) • [Security & Production](#production-readiness-and-security)
 
 </div>
@@ -35,7 +31,7 @@
 - **API Gateway Endpoint:** [https://57kpv9qex9.execute-api.eu-north-1.amazonaws.com/develop](https://57kpv9qex9.execute-api.eu-north-1.amazonaws.com/develop)
 - **Shared Demo Password:** `GreenTasty#2026` (for local Docker) / AWS Cloud uses your configured deployment secret (e.g., `3048764c9449ca2af2E7e1fb#63`).
 
-![main-preview.jpg](docs/images/main-preview.jpg)
+![Restaurant landing page preview](docs/images/main-preview-enhanced.png)
 
 | Role                      | Demo Email                        | Primary Dashboard / Test Target                                |
 |:--------------------------|:----------------------------------|:---------------------------------------------------------------|
@@ -56,7 +52,7 @@
 5. Log in as `waiter.rustaveli@example.com` to review incoming pre-orders, start the visit, and confirm dishes.
 6. As `admin@example.com`, inspect service analytics and download consolidated CSV/PDF/XLSX reports.
 
-![menu-preview.jpg](docs/images/menu-preview.jpg)
+![Restaurant menu preview](docs/images/menu-preview-enhanced.png)
 
 ---
 

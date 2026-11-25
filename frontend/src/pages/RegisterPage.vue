@@ -20,6 +20,8 @@
         <div class="form-row">
           <AppInput
             v-model="form.firstName"
+            name="given-name"
+            autocomplete="given-name"
             :label="t('core.firstName')"
             :placeholder="t('core.firstNameExample')"
             :error="errors.firstName"
@@ -27,6 +29,8 @@
           />
           <AppInput
             v-model="form.lastName"
+            name="family-name"
+            autocomplete="family-name"
             :label="t('core.lastName')"
             :placeholder="t('core.lastNameExample')"
             :error="errors.lastName"
@@ -36,6 +40,8 @@
 
         <AppInput
           v-model="form.email"
+          name="email"
+          autocomplete="email"
           :label="t('core.email')"
           type="email"
           :placeholder="t('core.emailExample', { at: '@' })"
@@ -45,6 +51,8 @@
 
         <AppInput
           v-model="form.password"
+          name="password"
+          autocomplete="new-password"
           :label="t('core.password')"
           type="password"
           :placeholder="t('core.passwordHint')"
@@ -54,6 +62,8 @@
 
         <AppInput
           v-model="form.confirmPassword"
+          name="confirm-password"
+          autocomplete="new-password"
           :label="t('core.confirmPassword')"
           type="password"
           :placeholder="t('core.repeatPassword')"

@@ -21,6 +21,7 @@ const rows = {
   toggleNav: ['Toggle navigation', 'Відкрити або закрити меню', 'Ouvrir ou fermer le menu', 'Abrir o cerrar el menú', 'Menü öffnen oder schließen'],
   primaryNavigation: ['Primary navigation', 'Основна навігація', 'Navigation principale', 'Navegación principal', 'Hauptnavigation'],
   mobileNavigation: ['Mobile navigation', 'Мобільна навігація', 'Navigation mobile', 'Navegación móvil', 'Mobile Navigation'],
+  skipToContent: ['Skip to main content', 'Перейти до основного вмісту', 'Aller au contenu principal', 'Ir al contenido principal', 'Zum Hauptinhalt springen'],
   notifications: ['Notifications', 'Сповіщення', 'Notifications', 'Notificaciones', 'Benachrichtigungen'],
   notificationsCount: ['Notifications, {count} unread | Notifications, {count} unread', 'Сповіщення: {count} непрочитане | Сповіщення: {count} непрочитані | Сповіщення: {count} непрочитаних', 'Notifications, {count} non lue | Notifications, {count} non lues', 'Notificaciones, {count} sin leer | Notificaciones, {count} sin leer', 'Benachrichtigungen, {count} ungelesen | Benachrichtigungen, {count} ungelesen'],
   markRead: ['Mark all read', 'Позначити всі прочитаними', 'Tout marquer comme lu', 'Marcar todo como leído', 'Alle als gelesen markieren'],

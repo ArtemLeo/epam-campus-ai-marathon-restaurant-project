@@ -1,6 +1,7 @@
 <template>
+  <a class="skip-link" href="#main-content">{{ t('core.skipToContent') }}</a>
   <AppHeader @open-login="openLogin()" />
-  <component :is="route.meta.ownsMainLandmark ? 'div' : 'main'" class="main-content">
+  <component :is="route.meta.ownsMainLandmark ? 'div' : 'main'" id="main-content" class="main-content" tabindex="-1">
     <RouterView />
   </component>
   <AppToast />
@@ -31,6 +32,23 @@ watch(() => auth.isAuthenticated, authenticated => {
 </script>
 
 <style scoped>
+.skip-link {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 1000;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  background: var(--neutral-0);
+  color: var(--green-800);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-150%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
 .main-content {
   flex: 1;
   display: flex;

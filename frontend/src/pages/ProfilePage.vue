@@ -1,7 +1,7 @@
 <template>
   <div class="profile-page container">
     <div class="page-header">
-      <h2>{{ t('core.myProfile') }}</h2>
+      <h1>{{ t('core.myProfile') }}</h1>
     </div>
 
     <LoadingSpinner v-if="loading" :text="t('core.loadingProfile')" />
@@ -24,7 +24,7 @@
             <p id="profile-photo-hint" class="sr-only">{{ t('core.photoHint') }}</p>
           </div>
           <div class="avatar-info">
-            <h4>{{ auth.fullName }}</h4>
+            <h2>{{ auth.fullName }}</h2>
             <span class="badge badge--confirmed">{{ roleLabel(auth.user?.role) }}</span>
           </div>
         </div>
@@ -34,7 +34,7 @@
       <div class="profile-info-col">
         <!-- Edit name -->
         <div class="card profile-section">
-          <h4 class="profile-section__title">{{ t('core.personalInfo') }}</h4>
+          <h2 class="profile-section__title">{{ t('core.personalInfo') }}</h2>
           <form @submit.prevent="saveProfile">
             <div class="form-row">
               <AppInput v-model="profileForm.firstName" name="given-name" autocomplete="given-name" :label="t('core.firstName')" :error="profileErrors.firstName" required />
@@ -50,7 +50,7 @@
 
         <!-- Change password -->
         <div class="card profile-section">
-          <h4 class="profile-section__title">{{ t('core.changePassword') }}</h4>
+          <h2 class="profile-section__title">{{ t('core.changePassword') }}</h2>
           <form @submit.prevent="savePassword">
             <AppInput
               v-model="passwordForm.oldPassword"
@@ -258,7 +258,7 @@ function handleImageUpload(event: Event): void {
   gap: 8px;
 }
 
-.avatar-info h4 { margin: 0; }
+.avatar-info h2 { margin: 0; }
 
 .profile-info-col {
   display: flex;

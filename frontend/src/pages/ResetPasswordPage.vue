@@ -8,8 +8,7 @@
         <p>{{ t('core.recoverySent') }}</p>
         <I18nT v-if="localCode" keypath="core.localCode" :i18n="i18n.global" tag="p" role="status"><template #code><strong>{{ localCode }}</strong></template></I18nT>
         <AppInput v-model="code" :label="t('core.recoveryCode')" autocomplete="one-time-code" required />
-        <AppInput v-model="password" :label="t('core.recoveryNewPassword')" type="password" autocomplete="new-password" required />
-        <p>{{ t('core.passwordPolicy') }}</p>
+        <AppInput v-model="password" :label="t('core.recoveryNewPassword')" type="password" autocomplete="new-password" :hint="t('core.passwordPolicy')" required />
         <AppInput v-model="confirmation" :label="t('core.recoveryConfirmPassword')" type="password" autocomplete="new-password" required />
       </template>
       <p v-if="error" class="form-error" role="alert">{{ error }}</p>

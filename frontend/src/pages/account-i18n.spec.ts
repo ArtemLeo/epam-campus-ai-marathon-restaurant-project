@@ -8,6 +8,7 @@ import { authApi } from '@/services/api'
 import { useAuthStore } from '@/stores/auth'
 import { clearDraft } from '@/components/auth/login-modal'
 import LoginForm from '@/components/auth/LoginForm.vue'
+import LoginModal from '@/components/auth/LoginModal.vue'
 import RegisterPage from './RegisterPage.vue'
 import ResetPasswordPage from './ResetPasswordPage.vue'
 import ProfilePage from './ProfilePage.vue'
@@ -23,6 +24,18 @@ async function routerFor(path = '/signup') {
 }
 
 describe('account locale changes preserve form state', () => {
+  it('names the login dialog with its visible heading', async () => {
+    mount(LoginModal, {
+      attachTo: document.body,
+      global: { plugins: [pinia, await routerFor('/main')] },
+    })
+    const dialog = document.body.querySelector<HTMLElement>('[role="dialog"]')!
+    const heading = dialog.querySelector<HTMLElement>('h2')!
+
+    expect(heading.id).not.toBe('')
+    expect(dialog.getAttribute('aria-labelledby')).toBe(heading.id)
+  })
+
   it('exposes whether the password is currently visible', async () => {
     const wrapper = mount(LoginForm, { global: { plugins: [pinia, await routerFor('/main')] } })
     const toggle = wrapper.get('button.eye-btn')

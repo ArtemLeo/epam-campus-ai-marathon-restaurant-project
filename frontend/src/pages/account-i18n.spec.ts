@@ -77,6 +77,9 @@ describe('account locale changes preserve form state', () => {
   it('updates registration field errors and labels while retaining entered values', async () => {
     const wrapper = mount(RegisterPage, { global: { plugins: [pinia, await routerFor()] } })
     const inputs = wrapper.findAll('input')
+    expect(inputs.map(input => input.attributes('autocomplete'))).toEqual([
+      'given-name', 'family-name', 'email', 'new-password', 'new-password',
+    ])
     await inputs[0]!.setValue('1')
     await inputs[1]!.setValue('Петренко')
     await inputs[2]!.setValue('person@example.com')

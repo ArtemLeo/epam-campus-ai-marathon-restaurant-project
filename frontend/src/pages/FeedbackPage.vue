@@ -27,9 +27,9 @@
           </div>
         </fieldset>
 
-        <div class="form-group">
-          <label>{{ t('customer.rating') }}</label>
-          <div class="stars" role="group" :aria-label="t('customer.rating')">
+        <fieldset class="form-group">
+          <legend>{{ t('customer.rating') }}</legend>
+          <div class="stars">
             <button
               v-for="star in 5"
               :key="star"
@@ -43,7 +43,7 @@
               &#9733;
             </button>
           </div>
-        </div>
+        </fieldset>
 
         <div class="form-group">
           <label for="feedback-comment">{{ t('customer.commentOptional') }}</label>

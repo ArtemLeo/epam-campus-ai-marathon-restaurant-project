@@ -6,7 +6,7 @@ import FeedbackPage from './FeedbackPage.vue'
 enableAutoUnmount(afterEach)
 
 describe('FeedbackPage accessibility', () => {
-  it('groups feedback type radios under a descriptive legend', async () => {
+  it('groups feedback controls under descriptive legends', async () => {
     const router = createRouter({
       history: createMemoryHistory(),
       routes: [{ path: '/feedback', component: FeedbackPage }],
@@ -14,9 +14,12 @@ describe('FeedbackPage accessibility', () => {
     await router.push('/feedback?reservationId=r1')
     const wrapper = mount(FeedbackPage, { global: { plugins: [router] } })
 
-    expect(wrapper.get('fieldset legend').text()).toBe('Feedback type')
+    expect(wrapper.findAll('fieldset legend').map(legend => legend.text())).toEqual([
+      'Feedback type', 'Rating',
+    ])
     const radios = wrapper.findAll('input[type="radio"]')
     expect(radios).toHaveLength(2)
     expect(radios.every(radio => radio.attributes('name') === 'feedback-type')).toBe(true)
+    expect(wrapper.get('.stars').attributes('role')).toBeUndefined()
   })
 })

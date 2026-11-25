@@ -3,7 +3,7 @@ import { enableAutoUnmount, flushPromises, mount } from '@vue/test-utils'
 import { createMemoryHistory, createRouter } from 'vue-router'
 import { createPinia, disposePinia, setActivePinia, type Pinia } from 'pinia'
 import { nextTick } from 'vue'
-import { setLocale } from '@/i18n'
+import { setLocale, t } from '@/i18n'
 import { authApi } from '@/services/api'
 import { useAuthStore } from '@/stores/auth'
 import { clearDraft } from '@/components/auth/login-modal'
@@ -34,6 +34,23 @@ describe('account locale changes preserve form state', () => {
     expect(toggle.attributes('aria-pressed')).toBe('true')
     expect(password.attributes('type')).toBe('text')
     expect(toggle.get('img').attributes('aria-hidden')).toBe('true')
+  })
+
+  it('exposes the pending login state until authentication finishes', async () => {
+    const auth = useAuthStore()
+    let finishLogin!: () => void
+    vi.spyOn(auth, 'login').mockImplementation(() => new Promise<void>(resolve => { finishLogin = resolve }))
+    const wrapper = mount(LoginForm, { global: { plugins: [pinia, await routerFor('/main')] } })
+    await wrapper.get('input[name="email"]').setValue('person@example.com')
+    await wrapper.get('input[name="password"]').setValue('Password#2026')
+    await wrapper.get('form').trigger('submit')
+    const submit = wrapper.get('button[type="submit"]')
+
+    expect(submit.attributes('aria-busy')).toBe('true')
+    expect(submit.text()).toBe(t('core.signingIn'))
+    finishLogin()
+    await flushPromises()
+    expect(submit.attributes('aria-busy')).toBeUndefined()
   })
 
   it('translates a visible login validation error without clearing email or password', async () => {

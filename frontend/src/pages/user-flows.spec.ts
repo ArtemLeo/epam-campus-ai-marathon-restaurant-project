@@ -50,6 +50,8 @@ describe('real guest API contract', () => {
     await flushPromises()
     expect(calls.find(c => c.path === '/guest/sessions')?.body).toEqual({ groupReservationId: 'group1', guestName: 'Olena' })
     expect(JSON.parse(localStorage.getItem('guest-session:invite1')!)).toEqual({ SessionId: 'session1', SessionToken: 'guest-token' })
+    const dishSearch = wrapper.get('input[name="guest-dish-search"]')
+    expect(dishSearch.attributes('type')).toBe('search')
     await button(wrapper, 'Add').trigger('click'); await flushPromises()
     await button(wrapper, 'Add').trigger('click'); await flushPromises()
     await button(wrapper, 'Remove one').trigger('click'); await flushPromises()

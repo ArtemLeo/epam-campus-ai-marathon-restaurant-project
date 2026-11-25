@@ -42,12 +42,12 @@
           <div v-if="auth.isWaiter" ref="notifRef" class="notifications-wrapper" @keydown.esc.prevent="closeNotifications">
             <button ref="notifButtonRef" type="button" class="icon-button notifications-btn" :title="t('core.notifications')" :aria-label="notifStore.unreadCount ? t('core.notificationsCount', { count: notifStore.unreadCount }, notifStore.unreadCount) : t('core.notifications')" aria-haspopup="true" :aria-controls="showNotifications ? 'notifications-menu' : undefined" :aria-expanded="showNotifications" @click="toggleNotifications">
               <img src="/assets/svg/bell.svg" alt="" aria-hidden="true" />
-              <span v-if="notifStore.unreadCount > 0" class="badge-dot">{{ notifStore.unreadCount }}</span>
+              <span v-if="notifStore.unreadCount > 0" class="badge-dot" aria-hidden="true">{{ notifStore.unreadCount }}</span>
             </button>
             <div v-if="showNotifications" id="notifications-menu" class="notifications-dropdown" role="region" :aria-label="t('core.notifications')">
               <div class="notifications-dropdown__header">
                 <span>{{ t('core.notifications') }}</span>
-                <button class="button button--tertiary" @click="notifStore.markAllAsRead()">{{ t('core.markRead') }}</button>
+                <button type="button" class="button button--tertiary" @click="notifStore.markAllAsRead()">{{ t('core.markRead') }}</button>
               </div>
               <div v-if="notifStore.notifications.length === 0" class="notifications-dropdown__empty">
                 {{ t('core.noNotifications') }}

@@ -15,17 +15,17 @@
       </div>
 
       <form v-else class="feedback-form" @submit.prevent="submitFeedback">
-        <div class="form-group">
-          <label>{{ t('customer.feedbackType') }}</label>
+        <fieldset class="form-group">
+          <legend>{{ t('customer.feedbackType') }}</legend>
           <div class="radio-group">
             <label class="radio-label">
-              <input v-model.number="form.type" type="radio" :value="0" /> {{ t('customer.service') }}
+              <input v-model.number="form.type" type="radio" name="feedback-type" :value="0" /> {{ t('customer.service') }}
             </label>
             <label class="radio-label">
-              <input v-model.number="form.type" type="radio" :value="1" /> {{ t('customer.cuisineExperienceLabel') }}
+              <input v-model.number="form.type" type="radio" name="feedback-type" :value="1" /> {{ t('customer.cuisineExperienceLabel') }}
             </label>
           </div>
-        </div>
+        </fieldset>
 
         <div class="form-group">
           <label>{{ t('customer.rating') }}</label>
@@ -119,8 +119,8 @@ h1 { margin: 0 0 4px; font-size: 24px; color: var(--neutral-900); }
 
 .feedback-form { display: flex; flex-direction: column; gap: 24px; }
 
-.form-group { display: flex; flex-direction: column; gap: 8px; }
-.form-group > label { font-size: 14px; font-weight: 500; color: var(--neutral-700); }
+.form-group { display: flex; flex-direction: column; gap: 8px; margin: 0; padding: 0; border: 0; }
+.form-group > label, .form-group > legend { font-size: 14px; font-weight: 500; color: var(--neutral-700); }
 .form-group textarea {
   padding: 10px 14px;
   border: 1px solid var(--neutral-300);

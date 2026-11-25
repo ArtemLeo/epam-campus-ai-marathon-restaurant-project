@@ -76,6 +76,8 @@ describe('account locale changes preserve form state', () => {
 
   it('updates registration field errors and labels while retaining entered values', async () => {
     const wrapper = mount(RegisterPage, { global: { plugins: [pinia, await routerFor()] } })
+    expect(wrapper.get('h1').text()).toBe('Create Account')
+    expect(wrapper.find('h3').exists()).toBe(false)
     const inputs = wrapper.findAll('input')
     expect(inputs.map(input => input.attributes('autocomplete'))).toEqual([
       'given-name', 'family-name', 'email', 'new-password', 'new-password',

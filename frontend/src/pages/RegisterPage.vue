@@ -56,6 +56,7 @@
           :label="t('core.password')"
           type="password"
           :placeholder="t('core.passwordHint')"
+          :hint="t('core.passwordPolicy')"
           :error="errors.password"
           required
         />

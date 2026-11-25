@@ -2,7 +2,7 @@
   <div class="reservations-page container">
     <div class="page-header flex justify-between items-center">
       <div>
-        <h2>{{ t('customer.myReservations') }}</h2>
+        <h1>{{ t('customer.myReservations') }}</h1>
         <p class="text-muted">{{ t('customer.bookingsIntro') }}</p>
       </div>
       <RouterLink to="/tables" class="button button--primary button--large">

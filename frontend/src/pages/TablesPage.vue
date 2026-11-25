@@ -1,7 +1,7 @@
 <template>
   <div class="tables-page container">
     <div class="page-header">
-      <h2>{{ t('customer.bookTable') }}</h2>
+      <h1>{{ t('customer.bookTable') }}</h1>
       <p class="text-muted">{{ t('customer.tableIntro', { timezone: RESTAURANT_TIMEZONE }) }}</p>
     </div>
 

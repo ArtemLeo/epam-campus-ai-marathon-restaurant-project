@@ -6,7 +6,7 @@
         <span>{{ t('core.restaurant') }}</span>
       </div>
 
-      <h3 class="auth-card__title">{{ t('core.createAccount') }}</h3>
+      <h1 class="auth-card__title">{{ t('core.createAccount') }}</h1>
       <p class="auth-card__sub text-muted">{{ t('core.registerSubtitle') }}</p>
 
       <form v-if="confirmationRequired" class="auth-form" @submit.prevent="confirmRegistration">

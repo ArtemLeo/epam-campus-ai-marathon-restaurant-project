@@ -42,9 +42,10 @@
           type="button"
           class="eye-btn"
           :aria-label="t(showPassword ? 'core.hidePassword' : 'core.showPassword')"
+          :aria-pressed="showPassword"
           @click="showPassword = !showPassword"
         >
-          <img :src="showPassword ? '/assets/svg/eye_closed.svg' : '/assets/svg/eye.svg'" alt="" />
+          <img :src="showPassword ? '/assets/svg/eye_closed.svg' : '/assets/svg/eye.svg'" alt="" aria-hidden="true" />
         </button>
       </div>
       <span v-if="passwordRequired" :id="passwordErrorId" class="field-error">

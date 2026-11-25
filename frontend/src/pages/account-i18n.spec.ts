@@ -23,6 +23,19 @@ async function routerFor(path = '/signup') {
 }
 
 describe('account locale changes preserve form state', () => {
+  it('exposes whether the password is currently visible', async () => {
+    const wrapper = mount(LoginForm, { global: { plugins: [pinia, await routerFor('/main')] } })
+    const toggle = wrapper.get('button.eye-btn')
+    const password = wrapper.get('input[name="password"]')
+
+    expect(toggle.attributes('aria-pressed')).toBe('false')
+    expect(password.attributes('type')).toBe('password')
+    await toggle.trigger('click')
+    expect(toggle.attributes('aria-pressed')).toBe('true')
+    expect(password.attributes('type')).toBe('text')
+    expect(toggle.get('img').attributes('aria-hidden')).toBe('true')
+  })
+
   it('translates a visible login validation error without clearing email or password', async () => {
     const wrapper = mount(LoginForm, { global: { plugins: [pinia, await routerFor('/main')] } })
     await wrapper.get('input[name="email"]').setValue('not-an-email')

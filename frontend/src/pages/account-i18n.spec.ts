@@ -80,6 +80,9 @@ describe('account locale changes preserve form state', () => {
     expect(inputs.map(input => input.attributes('autocomplete'))).toEqual([
       'given-name', 'family-name', 'email', 'new-password', 'new-password',
     ])
+    const passwordHint = wrapper.get('.app-input__hint')
+    expect(inputs[3]!.attributes('aria-describedby')).toBe(passwordHint.attributes('id'))
+    expect(passwordHint.text()).toContain('8–16 characters')
     await inputs[0]!.setValue('1')
     await inputs[1]!.setValue('Петренко')
     await inputs[2]!.setValue('person@example.com')

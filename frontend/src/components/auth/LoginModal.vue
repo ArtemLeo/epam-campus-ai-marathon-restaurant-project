@@ -1,11 +1,11 @@
 <template>
   <Teleport to="body">
     <div class="overlay" role="presentation" @click.self="close">
-      <div ref="panel" tabindex="-1" class="modal" role="dialog" aria-modal="true" :aria-label="t('core.signIn')">
+      <div ref="panel" tabindex="-1" class="modal" role="dialog" aria-modal="true" :aria-labelledby="titleId">
         <button type="button" class="icon-button modal-close" :aria-label="t('core.close')" @click="close">
           <img src="/assets/svg/close.svg" alt="" />
         </button>
-        <LoginForm @success="onSuccess" @navigate="close" />
+        <LoginForm :title-id="titleId" @success="onSuccess" @navigate="close" />
       </div>
     </div>
   </Teleport>
@@ -13,7 +13,7 @@
 
 <script setup lang="ts">
 import { t } from '@/i18n'
-import { ref } from 'vue'
+import { ref, useId } from 'vue'
 import { useDialogFocus } from '@/composables/useDialogFocus'
 import { useRouter } from 'vue-router'
 import LoginForm from '@/components/auth/LoginForm.vue'
@@ -24,6 +24,7 @@ const emit = defineEmits<{ close: [] }>()
 
 const router = useRouter()
 const auth = useAuthStore()
+const titleId = `${useId()}-title`
 
 function close(): void {
   emit('close')

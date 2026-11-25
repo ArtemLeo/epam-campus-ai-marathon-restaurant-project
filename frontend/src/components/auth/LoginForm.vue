@@ -1,6 +1,6 @@
 <template>
   <form class="form" novalidate @submit.prevent="onSubmit">
-    <h2 class="title">{{ t('core.signInTitle') }}</h2>
+    <h2 :id="titleId" class="title">{{ t('core.signInTitle') }}</h2>
 
     <div v-if="isAccountLocked" class="banner-error" role="alert">
       {{ t('core.accountLocked') }}
@@ -82,6 +82,7 @@ import { isApiError } from '@/services/http/api-client'
 import { EMAIL_PATTERN } from '@/components/auth/password-rules'
 
 const emit = defineEmits<{ success: []; navigate: [] }>()
+defineProps<{ titleId?: string }>()
 
 const auth = useAuthStore()
 const modal = useLoginModal()

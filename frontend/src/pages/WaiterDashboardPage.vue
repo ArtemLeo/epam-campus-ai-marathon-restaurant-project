@@ -2,7 +2,7 @@
   <div class="waiter-page container">
     <div class="page-header">
       <div>
-        <h2>{{ t('staff.waiterTitle') }}</h2>
+        <h1>{{ t('staff.waiterTitle') }}</h1>
         <p class="text-muted">{{ t('staff.waiterSubtitle') }}</p>
       </div>
       <button type="button" class="button button--primary" @click="walkInOpen = true">+ {{ t('staff.walkIn') }}</button>

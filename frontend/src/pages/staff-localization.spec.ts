@@ -49,7 +49,7 @@ describe('staff language switching', () => {
     for (const language of supportedLocales) {
       setLocale(language)
       await flushPromises()
-      expect(wrapper.text()).toContain(staffMessages[language].staff[title])
+      expect(wrapper.get('h1').text()).toBe(staffMessages[language].staff[title])
       expect(wrapper.text()).not.toMatch(/\bstaff\.[a-zA-Z]/)
     }
     expect(vi.mocked(locationsApi.list).mock.calls.length).toBeLessThanOrEqual(1)

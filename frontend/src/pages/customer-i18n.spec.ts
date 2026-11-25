@@ -66,6 +66,8 @@ describe('customer pages in five languages', () => {
     expect(wrapper.text()).toContain('Kulinarisches Erlebnis')
     expect(wrapper.findAll('textarea')[0]!.element.value).toBe('Дякую за гостинність!')
     expect(wrapper.findAll('textarea')[0]!.attributes('placeholder')).toBe('Kommentar (optional)')
+    expect(wrapper.get('textarea[name="feedback-comment-0"]').attributes('aria-label')).toBe('Service: Kommentar (optional)')
+    expect(wrapper.get('textarea[name="feedback-comment-1"]').attributes('aria-label')).toBe('Kulinarisches Erlebnis: Kommentar (optional)')
     await wrapper.findAll('button.button--primary')[0]!.trigger('click'); await flushPromises()
     expect(feedbackApi.create).toHaveBeenCalledWith({ reservationId: 'r1', rating: 5, type: 0, comment: 'Дякую за гостинність!' })
     setLocale('fr'); await nextTick()

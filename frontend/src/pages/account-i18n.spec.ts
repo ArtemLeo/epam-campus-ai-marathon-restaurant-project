@@ -139,6 +139,13 @@ describe('account locale changes preserve form state', () => {
     const photoHint = wrapper.get('#profile-photo-hint')
     expect(photoInput.attributes('aria-describedby')).toBe(photoHint.attributes('id'))
     expect(photoHint.text()).toContain('JPEG, PNG or WebP')
+    const passwordForm = wrapper.findAll('form')[1]!
+    const passwordInputs = passwordForm.findAll('input')
+    expect(passwordInputs.map(input => input.attributes('autocomplete'))).toEqual([
+      'current-password', 'new-password', 'new-password',
+    ])
+    const passwordHint = passwordForm.get('.app-input__hint')
+    expect(passwordInputs[1]!.attributes('aria-describedby')).toBe(passwordHint.attributes('id'))
     const firstForm = wrapper.findAll('form')[0]!
     await firstForm.findAll('input')[0]!.setValue('1')
     await firstForm.trigger('submit')

@@ -11,7 +11,7 @@
 
       <form v-if="confirmationRequired" class="auth-form" @submit.prevent="confirmRegistration">
         <p>{{ t('core.codeSentTo', { email: form.email }) }}</p>
-        <AppInput v-model="confirmationCode" :label="t('core.confirmationCode')" autocomplete="one-time-code" required />
+        <AppInput v-model="confirmationCode" name="confirmation-code" :label="t('core.confirmationCode')" autocomplete="one-time-code" required />
         <p v-if="globalError" class="form-error" role="alert">{{ globalError }}</p>
         <AppButton type="submit" :loading="loading">{{ t('core.confirmEmail') }}</AppButton>
         <AppButton variant="secondary" :disabled="loading" @click="resendConfirmation">{{ t('core.resendCode') }}</AppButton>

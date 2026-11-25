@@ -3,13 +3,14 @@
     <div class="location-card__image-wrap">
       <img
         :src="location.imageUrl || '/assets/img/location-placeholder.jpg'"
-        :alt="t('customer.restaurantAt', { address: location.address })"
+        alt=""
+        aria-hidden="true"
         class="location-card__image" loading="lazy"
       />
     </div>
     <div class="location-card__body">
       <p class="location-card__address">
-        <img src="/assets/svg/pin.svg" alt="" class="icon-sm" />
+        <img src="/assets/svg/pin.svg" alt="" aria-hidden="true" class="icon-sm" />
         {{ location.address }}
       </p>
       <div v-if="location.rating" class="location-card__rating">

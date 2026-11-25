@@ -19,7 +19,7 @@
         </div>
         <div class="guest-layout">
           <section v-if="!session.isSubmitted" :aria-label="t('orders.menu')">
-            <AppInput v-model="search" :label="t('orders.searchDishes')" />
+            <AppInput v-model="search" type="search" name="guest-dish-search" :label="t('orders.searchDishes')" />
             <p v-if="!filteredDishes.length">{{ t('orders.noMatchingDishes') }}</p>
             <div class="dishes-grid">
               <article v-for="dish in filteredDishes" :key="dish.id" class="card dish-card">

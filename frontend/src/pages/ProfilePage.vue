@@ -54,6 +54,8 @@
           <form @submit.prevent="savePassword">
             <AppInput
               v-model="passwordForm.oldPassword"
+              name="current-password"
+              autocomplete="current-password"
               :label="t('core.currentPassword')"
               type="password"
               :error="passwordErrors.oldPassword"
@@ -61,13 +63,18 @@
             />
             <AppInput
               v-model="passwordForm.newPassword"
+              name="new-password"
+              autocomplete="new-password"
               :label="t('core.newPassword')"
               type="password"
+              :hint="t('core.passwordPolicy')"
               :error="passwordErrors.newPassword"
               required
             />
             <AppInput
               v-model="passwordForm.confirmNew"
+              name="confirm-new-password"
+              autocomplete="new-password"
               :label="t('core.confirmNewPassword')"
               type="password"
               :error="passwordErrors.confirmNew"

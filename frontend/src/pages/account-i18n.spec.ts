@@ -138,6 +138,9 @@ describe('account locale changes preserve form state', () => {
     vi.spyOn(auth, 'fetchMe').mockResolvedValue(undefined)
     vi.spyOn(authApi, 'profileImage').mockResolvedValue({ presignedUrl: '/assets/img/avatar.png' })
     const wrapper = mount(ProfilePage, { global: { plugins: [pinia] } }); await flushPromises()
+    expect(wrapper.findAll('h1, h2').map(heading => heading.text())).toEqual([
+      'My Profile', 'Олена Коваль', 'Personal Information', 'Change Password',
+    ])
     const photoInput = wrapper.get('input[type="file"]')
     const photoHint = wrapper.get('#profile-photo-hint')
     expect(photoInput.attributes('aria-describedby')).toBe(photoHint.attributes('id'))

@@ -8,7 +8,7 @@
         <p>{{ invite.LocationAddress }} · {{ formatDate(invite.StartTime) }} ({{ RESTAURANT_TIMEZONE }})</p>
       </div>
       <form v-if="!credentials" class="card join-form" @submit.prevent="join">
-        <AppInput v-model="guestName" :label="t('orders.yourName')" maxlength="50" required autocomplete="name" />
+        <AppInput v-model="guestName" name="guest-name" :label="t('orders.yourName')" maxlength="50" required autocomplete="name" />
         <p v-if="actionError" class="form-error" role="alert">{{ message(actionError) }}</p>
         <AppButton type="submit" :loading="busy" :disabled="!guestName.trim()">{{ t('orders.joinGroup') }}</AppButton>
       </form>

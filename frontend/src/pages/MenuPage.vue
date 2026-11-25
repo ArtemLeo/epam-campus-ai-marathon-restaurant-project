@@ -1,7 +1,7 @@
 <template>
   <div class="menu-page container">
     <div class="page-header">
-      <h2>{{ t('customer.menuTitle') }}</h2>
+      <h1>{{ t('customer.menuTitle') }}</h1>
       <p class="text-muted">{{ t('customer.menuSubtitle') }}</p>
     </div>
 

@@ -20,7 +20,7 @@ describe('customer pages in five languages', () => {
     } as Dish
     vi.spyOn(dishesApi, 'list').mockResolvedValue([dish])
     const wrapper = mount(MenuPage); await flushPromises()
-    expect(wrapper.text()).toContain('Our Menu')
+    expect(wrapper.get('h1').text()).toBe('Our Menu')
     setLocale('fr'); await nextTick()
     expect(wrapper.text()).toContain('Notre carte')
     expect(wrapper.text()).toContain('Velouté de légumes')

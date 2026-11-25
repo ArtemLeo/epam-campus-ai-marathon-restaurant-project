@@ -8,11 +8,11 @@
     </div>
     <div class="table-card__body">
       <div class="table-card__row">
-        <img src="/assets/svg/users.svg" :alt="t('customer.capacity')" class="icon-sm" />
+        <img src="/assets/svg/users.svg" alt="" aria-hidden="true" class="icon-sm" />
         <span>{{ t('customer.capacityGuests', { count: table.capacity }, table.capacity) }}</span>
       </div>
       <div v-if="table.locationName" class="table-card__row">
-        <img src="/assets/svg/pin.svg" :alt="t('customer.location')" class="icon-sm" />
+        <img src="/assets/svg/pin.svg" alt="" aria-hidden="true" class="icon-sm" />
         <span>{{ table.locationName }}</span>
       </div>
     </div>

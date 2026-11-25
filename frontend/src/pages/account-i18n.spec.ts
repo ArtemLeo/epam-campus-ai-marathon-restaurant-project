@@ -126,6 +126,10 @@ describe('account locale changes preserve form state', () => {
     vi.spyOn(auth, 'fetchMe').mockResolvedValue(undefined)
     vi.spyOn(authApi, 'profileImage').mockResolvedValue({ presignedUrl: '/assets/img/avatar.png' })
     const wrapper = mount(ProfilePage, { global: { plugins: [pinia] } }); await flushPromises()
+    const photoInput = wrapper.get('input[type="file"]')
+    const photoHint = wrapper.get('#profile-photo-hint')
+    expect(photoInput.attributes('aria-describedby')).toBe(photoHint.attributes('id'))
+    expect(photoHint.text()).toContain('JPEG, PNG or WebP')
     const firstForm = wrapper.findAll('form')[0]!
     await firstForm.findAll('input')[0]!.setValue('1')
     await firstForm.trigger('submit')

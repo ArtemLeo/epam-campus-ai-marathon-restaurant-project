@@ -19,8 +19,9 @@
           <div class="avatar-actions">
             <label class="button button--secondary button--small" style="cursor:pointer">
               {{ t(uploadingPhoto ? 'core.uploading' : 'core.changePhoto') }}
-              <input type="file" accept="image/jpeg,image/png,image/webp" :disabled="uploadingPhoto" class="sr-only" @change="handleImageUpload" />
+              <input type="file" accept="image/jpeg,image/png,image/webp" :disabled="uploadingPhoto" class="sr-only" aria-describedby="profile-photo-hint" @change="handleImageUpload" />
             </label>
+            <p id="profile-photo-hint" class="sr-only">{{ t('core.photoHint') }}</p>
           </div>
           <div class="avatar-info">
             <h4>{{ auth.fullName }}</h4>

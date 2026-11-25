@@ -37,10 +37,10 @@
           <h4 class="profile-section__title">{{ t('core.personalInfo') }}</h4>
           <form @submit.prevent="saveProfile">
             <div class="form-row">
-              <AppInput v-model="profileForm.firstName" :label="t('core.firstName')" :error="profileErrors.firstName" required />
-              <AppInput v-model="profileForm.lastName" :label="t('core.lastName')" :error="profileErrors.lastName" required />
+              <AppInput v-model="profileForm.firstName" name="given-name" autocomplete="given-name" :label="t('core.firstName')" :error="profileErrors.firstName" required />
+              <AppInput v-model="profileForm.lastName" name="family-name" autocomplete="family-name" :label="t('core.lastName')" :error="profileErrors.lastName" required />
             </div>
-            <AppInput :model-value="auth.user?.email ?? ''" :label="t('core.email')" disabled />
+            <AppInput :model-value="auth.user?.email ?? ''" name="email" autocomplete="email" :label="t('core.email')" disabled />
             <p v-if="profileMsg" class="profile-msg" :class="profileMsg.type === 'error' ? 'text-danger' : 'text-success'" :role="profileMsg.type === 'error' ? 'alert' : 'status'">
               {{ messageText(profileMsg) }}
             </p>

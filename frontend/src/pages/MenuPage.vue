@@ -22,7 +22,14 @@
       <select v-model="sortBy" class="menu-sort" :aria-label="t('customer.sortDishes')">
         <option v-for="opt in sortOptions" :key="opt.value" :value="opt.value">{{ opt.label }}</option>
       </select>
-      <AppInput v-model="searchQuery" :placeholder="t('customer.searchDishes')" style="max-width: 320px" />
+      <AppInput
+        v-model="searchQuery"
+        type="search"
+        name="dish-search"
+        :aria-label="t('customer.searchDishes')"
+        :placeholder="t('customer.searchDishes')"
+        style="max-width: 320px"
+      />
     </div>
 
     <LoadingSpinner v-if="loading" :text="t('customer.loadingMenu')" />

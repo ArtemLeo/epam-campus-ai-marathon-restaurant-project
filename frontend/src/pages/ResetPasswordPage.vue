@@ -3,13 +3,13 @@
     <h1>{{ t('core.resetTitle') }}</h1>
     <p v-if="complete" role="status">{{ t('core.resetComplete') }} <button class="button button--primary" @click="openLogin()">{{ t('core.signInSentence') }}</button></p>
     <form v-else class="card recovery-form" @submit.prevent="submit">
-      <AppInput v-model="email" :label="t('core.email')" type="email" autocomplete="email" required :disabled="codeSent" />
+      <AppInput v-model="email" name="email" :label="t('core.email')" type="email" autocomplete="email" required :disabled="codeSent" />
       <template v-if="codeSent">
         <p>{{ t('core.recoverySent') }}</p>
         <I18nT v-if="localCode" keypath="core.localCode" :i18n="i18n.global" tag="p" role="status"><template #code><strong>{{ localCode }}</strong></template></I18nT>
-        <AppInput v-model="code" :label="t('core.recoveryCode')" autocomplete="one-time-code" required />
-        <AppInput v-model="password" :label="t('core.recoveryNewPassword')" type="password" autocomplete="new-password" :hint="t('core.passwordPolicy')" required />
-        <AppInput v-model="confirmation" :label="t('core.recoveryConfirmPassword')" type="password" autocomplete="new-password" required />
+        <AppInput v-model="code" name="recovery-code" :label="t('core.recoveryCode')" autocomplete="one-time-code" required />
+        <AppInput v-model="password" name="new-password" :label="t('core.recoveryNewPassword')" type="password" autocomplete="new-password" :hint="t('core.passwordPolicy')" required />
+        <AppInput v-model="confirmation" name="confirm-new-password" :label="t('core.recoveryConfirmPassword')" type="password" autocomplete="new-password" required />
       </template>
       <p v-if="error" class="form-error" role="alert">{{ error }}</p>
       <AppButton type="submit" :loading="busy">{{ t(codeSent ? 'core.saveNewPassword' : 'core.sendRecovery') }}</AppButton>

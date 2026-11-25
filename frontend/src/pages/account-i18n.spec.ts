@@ -116,6 +116,9 @@ describe('account locale changes preserve form state', () => {
     const wrapper = mount(ResetPasswordPage)
     await wrapper.get('input[type="email"]').setValue('person@example.com')
     await wrapper.get('form').trigger('submit'); await flushPromises()
+    expect(wrapper.findAll('input').map(input => input.attributes('name'))).toEqual([
+      'email', 'recovery-code', 'new-password', 'confirm-new-password',
+    ])
     const newPassword = wrapper.findAll('input[type="password"]')[0]!
     const passwordHint = wrapper.get('.app-input__hint')
     expect(newPassword.attributes('aria-describedby')).toBe(passwordHint.attributes('id'))

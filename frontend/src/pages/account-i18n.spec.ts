@@ -3,7 +3,7 @@ import { enableAutoUnmount, flushPromises, mount } from '@vue/test-utils'
 import { createMemoryHistory, createRouter } from 'vue-router'
 import { createPinia, disposePinia, setActivePinia, type Pinia } from 'pinia'
 import { nextTick } from 'vue'
-import { setLocale } from '@/i18n'
+import { setLocale, t } from '@/i18n'
 import { authApi } from '@/services/api'
 import { useAuthStore } from '@/stores/auth'
 import { clearDraft } from '@/components/auth/login-modal'
@@ -47,7 +47,7 @@ describe('account locale changes preserve form state', () => {
     const submit = wrapper.get('button[type="submit"]')
 
     expect(submit.attributes('aria-busy')).toBe('true')
-    expect(submit.text()).toBe('Signing in...')
+    expect(submit.text()).toBe(t('core.signingIn'))
     finishLogin()
     await flushPromises()
     expect(submit.attributes('aria-busy')).toBeUndefined()

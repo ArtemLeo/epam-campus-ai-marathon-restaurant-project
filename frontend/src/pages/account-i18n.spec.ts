@@ -147,6 +147,9 @@ describe('account locale changes preserve form state', () => {
     const passwordHint = passwordForm.get('.app-input__hint')
     expect(passwordInputs[1]!.attributes('aria-describedby')).toBe(passwordHint.attributes('id'))
     const firstForm = wrapper.findAll('form')[0]!
+    expect(firstForm.findAll('input').map(input => input.attributes('autocomplete'))).toEqual([
+      'given-name', 'family-name', 'email',
+    ])
     await firstForm.findAll('input')[0]!.setValue('1')
     await firstForm.trigger('submit')
     setLocale('uk'); await nextTick()

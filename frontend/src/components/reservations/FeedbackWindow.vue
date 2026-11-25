@@ -18,7 +18,13 @@
             ★
           </button>
         </div>
-        <textarea v-model="forms[section.type].comment" rows="3" :placeholder="t('customer.commentOptional')" />
+        <textarea
+          v-model="forms[section.type].comment"
+          :name="`feedback-comment-${section.type}`"
+          rows="3"
+          :aria-label="`${section.label}: ${t('customer.commentOptional')}`"
+          :placeholder="t('customer.commentOptional')"
+        />
         <button
           type="button"
           class="button button--primary button--small"

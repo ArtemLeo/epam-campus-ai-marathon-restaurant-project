@@ -184,3 +184,15 @@ textarea:focus {
 .gap-8  { gap: 8px; }
 .gap-16 { gap: 16px; }
 .gap-24 { gap: 24px; }
+
+/* Respect the operating system preference for less non-essential motion. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -36,6 +36,23 @@ describe('account locale changes preserve form state', () => {
     expect(toggle.get('img').attributes('aria-hidden')).toBe('true')
   })
 
+  it('exposes the pending login state until authentication finishes', async () => {
+    const auth = useAuthStore()
+    let finishLogin!: () => void
+    vi.spyOn(auth, 'login').mockImplementation(() => new Promise<void>(resolve => { finishLogin = resolve }))
+    const wrapper = mount(LoginForm, { global: { plugins: [pinia, await routerFor('/main')] } })
+    await wrapper.get('input[name="email"]').setValue('person@example.com')
+    await wrapper.get('input[name="password"]').setValue('Password#2026')
+    await wrapper.get('form').trigger('submit')
+    const submit = wrapper.get('button[type="submit"]')
+
+    expect(submit.attributes('aria-busy')).toBe('true')
+    expect(submit.text()).toBe('Signing in...')
+    finishLogin()
+    await flushPromises()
+    expect(submit.attributes('aria-busy')).toBeUndefined()
+  })
+
   it('translates a visible login validation error without clearing email or password', async () => {
     const wrapper = mount(LoginForm, { global: { plugins: [pinia, await routerFor('/main')] } })
     await wrapper.get('input[name="email"]').setValue('not-an-email')

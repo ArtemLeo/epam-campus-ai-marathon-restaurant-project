@@ -61,7 +61,7 @@
       <RouterLink class="forgot-link" to="/forgot-password" @click="emit('navigate')">{{ t('core.forgotPassword') }}</RouterLink>
     </div>
 
-    <button type="submit" class="button button--primary button--extra-large button--full-width" :disabled="!isValid || loading">
+    <button type="submit" class="button button--primary button--extra-large button--full-width" :disabled="!isValid || loading" :aria-busy="loading ? 'true' : undefined">
       {{ t(loading ? 'core.signingIn' : 'core.signIn') }}
     </button>
 
